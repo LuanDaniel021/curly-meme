@@ -1,7 +1,10 @@
 const API_URL = (window.API_URL || '/api').replace(/\/$/, '');
 
-async function request(endpoint, options = {}) {
+interface RequestOptions extends RequestInit {
+  body?: any;
+}
 
+async function request(endpoint: string, options: RequestOptions = {}) {
   console.log(`Requesting ${options.method || 'GET'} ${API_URL}${endpoint} with options:`, options);
   const { body, headers = {}, ...requestOptions } = options;
   const requestHeaders = new Headers(headers);
@@ -30,11 +33,11 @@ async function request(endpoint, options = {}) {
 }
 
 export const api = {
-  get: (endpoint, options = {}) => request(endpoint, { ...options, method: 'GET' }),
-  post: (endpoint, body, options = {}) => request(endpoint, { ...options, method: 'POST', body }),
-  put: (endpoint, body, options = {}) => request(endpoint, { ...options, method: 'PUT', body }),
-  patch: (endpoint, body, options = {}) => request(endpoint, { ...options, method: 'PATCH', body }),
-  delete: (endpoint, options = {}) => request(endpoint, { ...options, method: 'DELETE' }),
+  get: (endpoint: string, options = {}) => request(endpoint, { ...options, method: 'GET' }),
+  post: (endpoint: string, body?: any, options = {}) => request(endpoint, { ...options, method: 'POST', body }),
+  put: (endpoint: string, body?: any, options = {}) => request(endpoint, { ...options, method: 'PUT', body }),
+  patch: (endpoint: string, body?: any, options = {}) => request(endpoint, { ...options, method: 'PATCH', body }),
+  delete: (endpoint: string, options = {}) => request(endpoint, { ...options, method: 'DELETE' }),
 };
 
 export { request };
