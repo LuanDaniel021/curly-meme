@@ -1,11 +1,8 @@
 
-//import styles from './VeiculosView.module.css';
-
-function VeiculosView()
-{
-    return (
-        <></>
-    )
+function VeiculosView() {
+  return (
+    <></>
+  );
 }
 
 export default VeiculosView;
