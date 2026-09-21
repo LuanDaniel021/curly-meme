@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './Cadastro_Caminhao.module.css';
 
 function CadastroCaminhao() {
   // Estados para os campos do formulário
@@ -32,20 +33,20 @@ function CadastroCaminhao() {
   };
 
   return (
-    <div className="body-container">
-      <div className="container">
-        <div className="card">
-          <div className="card-header">
+    <div className={styles.bodyContainer}>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
             <h2>Cadastro de Veículo</h2>
           </div>
 
           <form onSubmit={handleSubmit} data-api-endpoint="/caminhoes">
             
             {/* Identificação */}
-            <div className="section-title">01. Identificação do Veículo</div>
+            <div className={styles.sectionTitle}>01. Identificação do Veículo</div>
             
-            <div className="grid-2">
-              <div className="form-group">
+            <div className={styles.grid2}>
+              <div className={styles.formGroup}>
                 <label htmlFor="placa">Placa*</label>
                 <input 
                   type="text" 
@@ -57,7 +58,7 @@ function CadastroCaminhao() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="renavam">RENAVAM*</label>
                 <input 
                   type="text" 
@@ -70,7 +71,7 @@ function CadastroCaminhao() {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="chassi">Número do Chassi*</label>
               <input 
                 type="text" 
@@ -84,9 +85,9 @@ function CadastroCaminhao() {
             </div>
 
             {/* Template do Display de Rodas */}
-            <div className="section-title">02. Configuração do Display de Rodas</div>
+            <div className={styles.sectionTitle}>02. Configuração do Display de Rodas</div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="template_eixos_id">Template de Eixos*</label>
               <select 
                 id="template_eixos_id" 
@@ -102,19 +103,19 @@ function CadastroCaminhao() {
             </div>
 
             {templateEixos && previews[templateEixos] && (
-              <div className="template-preview-card" id="boxPreview">
-                <div className="template-preview-title">Estrutura do Layout Selecionado</div>
-                <div className="template-preview-code" style={{ whiteSpace: 'pre-line' }}>
+              <div className={styles.templatePreviewCard} id="boxPreview">
+                <div className={styles.templatePreviewTitle}>Estrutura do Layout Selecionado</div>
+                <div className={styles.templatePreviewCode} style={{ whiteSpace: 'pre-line' }}>
                   {previews[templateEixos]}
                 </div>
               </div>
             )}
 
             {/* Especificações Técnicas */}
-            <div className="section-title">03. Especificações Técnicas</div>
+            <div className={styles.sectionTitle}>03. Especificações Técnicas</div>
 
-            <div className="grid-2">
-              <div className="form-group">
+            <div className={styles.grid2}>
+              <div className={styles.formGroup}>
                 <label htmlFor="marca">Marca*</label>
                 <input 
                   type="text" 
@@ -125,7 +126,7 @@ function CadastroCaminhao() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="modelo">Modelo*</label>
                 <input 
                   type="text" 
@@ -138,8 +139,8 @@ function CadastroCaminhao() {
               </div>
             </div>
 
-            <div className="grid-3">
-              <div className="form-group">
+            <div className={styles.grid3}>
+              <div className={styles.formGroup}>
                 <label htmlFor="ano_fab">Ano Fab.*</label>
                 <input 
                   type="number" 
@@ -152,7 +153,7 @@ function CadastroCaminhao() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="ano_mod">Ano Mod.*</label>
                 <input 
                   type="number" 
@@ -165,7 +166,7 @@ function CadastroCaminhao() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="km_inicial">KM Atual*</label>
                 <input 
                   type="number" 
@@ -178,8 +179,8 @@ function CadastroCaminhao() {
               </div>
             </div>
 
-            <div className="grid-2">
-              <div className="form-group">
+            <div className={styles.grid2}>
+              <div className={styles.formGroup}>
                 <label htmlFor="carroceria">Carroceria*</label>
                 <select 
                   id="carroceria" 
@@ -195,7 +196,7 @@ function CadastroCaminhao() {
                   <option value="cacamba">Caçamba</option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="combustivel">Combustível*</label>
                 <select 
                   id="combustivel" 
@@ -211,14 +212,14 @@ function CadastroCaminhao() {
             </div>
 
             {/* Documentos e Mídia */}
-            <div className="section-title">04. Informações Adicionais</div>
+            <div className={styles.sectionTitle}>04. Informações Adicionais</div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="foto_veiculo">Foto do Veículo</label>
               <input type="file" id="foto_veiculo" name="foto_veiculo" accept="image/*" />
             </div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="observacoes">Observações / Histórico</label>
               <textarea 
                 id="observacoes" 
@@ -229,7 +230,7 @@ function CadastroCaminhao() {
               />
             </div>
 
-            <button type="submit" className="btn-submit">Salvar Veículo</button>
+            <button type="submit" className={styles.btnSubmit}>Salvar Veículo</button>
           </form>
         </div>
       </div>

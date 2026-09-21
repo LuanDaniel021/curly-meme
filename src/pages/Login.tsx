@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../service/api';
+import styles from './Login.module.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -48,7 +49,6 @@ function Login() {
         nome: nomeReg,
         email: emailReg,
         senha: senhaReg,
-        // O campo 'perfil' pode ser enviado se a API aceitar, caso contrário podes omitir
       });
 
       console.log('Cadastro efetuado com sucesso:', response.data);
@@ -63,21 +63,21 @@ function Login() {
   };
 
   return (
-    <div className="body-container">
-      <div className="auth-container">
+    <div className={styles.bodyContainer}>
+      <div className={styles.authContainer}>
         
-        <div className="auth-header">
+        <div className={styles.authHeader}>
           <h1>Gestão de Frotas</h1>
           <p>Acesse o painel para gerenciar seus veículos e pneus</p>
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           
           {/* Botões das abas com o evento onClick chamando o setAbaAtiva */}
-          <div className="tabs">
+          <div className={styles.tabs}>
             <button 
               type="button"
-              className={`tab-btn ${abaAtiva === 'login' ? 'active' : ''}`} 
+              className={`${styles.tabBtn} ${abaAtiva === 'login' ? styles.active : ''}`} 
               onClick={() => setAbaAtiva('login')}
             >
               Entrar
@@ -85,7 +85,7 @@ function Login() {
             
             <button 
               type="button"
-              className={`tab-btn ${abaAtiva === 'register' ? 'active' : ''}`} 
+              className={`${styles.tabBtn} ${abaAtiva === 'register' ? styles.active : ''}`} 
               onClick={() => setAbaAtiva('register')}
             >
               Criar Conta
@@ -93,9 +93,9 @@ function Login() {
           </div>
 
           {/* Conteúdo da aba de Login */}
-          <div className={`tab-content ${abaAtiva === 'login' ? 'active' : ''}`}>
+          <div className={`${styles.tabContent} ${abaAtiva === 'login' ? styles.active : ''}`}>
             <form onSubmit={handleLogin}>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="login_email">E-mail ou Usuário*</label>
                 <input 
                   id="login_email"
@@ -107,7 +107,7 @@ function Login() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="login_password">Senha*</label>
                 <input 
                   id="login_password"
@@ -119,21 +119,21 @@ function Login() {
                 />
               </div>
 
-              <div className="form-options">
-                <label className="remember-me">
+              <div className={styles.formOptions}>
+                <label className={styles.rememberMe}>
                   <input type="checkbox" /> Lembrar de mim
                 </label>
-                <a href="#" className="forgot-password">Esqueceu a senha?</a>
+                <a href="#" className={styles.forgotPassword}>Esqueceu a senha?</a>
               </div>
 
-              <button type="submit" className="btn-submit">Acessar Sistema</button>
+              <button type="submit" className={styles.btnSubmit}>Acessar Sistema</button>
             </form>
           </div>
 
           {/* Conteúdo da aba de Cadastro */}
-          <div className={`tab-content ${abaAtiva === 'register' ? 'active' : ''}`}>
+          <div className={`${styles.tabContent} ${abaAtiva === 'register' ? styles.active : ''}`}>
             <form onSubmit={handleRegister}>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="reg_nome">Nome Completo*</label>
                 <input 
                   id="reg_nome" 
@@ -145,7 +145,7 @@ function Login() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="reg_email">E-mail Profissional*</label>
                 <input 
                   id="reg_email" 
@@ -157,7 +157,7 @@ function Login() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="reg_perfil">Perfil de Acesso*</label>
                 <select 
                   id="reg_perfil" 
@@ -172,8 +172,8 @@ function Login() {
                 </select>
               </div>
 
-              <div className="grid-2">
-                <div className="form-group">
+              <div className={styles.grid2}>
+                <div className={styles.formGroup}>
                   <label htmlFor="reg_senha">Senha*</label>
                   <input 
                     id="reg_senha" 
@@ -184,7 +184,7 @@ function Login() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                   <label htmlFor="reg_confirma_senha">Confirmar Senha*</label>
                   <input 
                     id="reg_confirma_senha" 
@@ -197,7 +197,7 @@ function Login() {
                 </div>
               </div>
 
-              <button type="submit" className="btn-submit">Cadastrar Conta</button>
+              <button type="submit" className={styles.btnSubmit}>Cadastrar Conta</button>
             </form>
           </div>
 

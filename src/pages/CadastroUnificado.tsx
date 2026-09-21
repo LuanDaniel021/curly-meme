@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../service/api';
+import styles from './CadastroUnificado.module.css';
 
 function CadastroUnificado() {
+  const navigate = useNavigate();
+
   // Estados para os dados do Veículo
   const [placa, setPlaca] = useState('');
   const [renavam, setRenavam] = useState('');
@@ -27,42 +32,77 @@ function CadastroUnificado() {
   const [rntrc, setRntrc] = useState('');
   const [observacoes, setObservacoes] = useState('');
 
+  // Estados para os Ficheiros (PDF do CRLV e Foto)
+  const [arquivoCrlv, setArquivoCrlv] = useState<File | null>(null);
+  const [fotoVeiculo, setFotoVeiculo] = useState<File | null>(null);
+
   // Textos de preview baseados na seleção do template
-  const previews = {
+  const previews: Record<string, string> = {
     "1": "E0E - E0D -> eixo 0, direcional\nE1EE E1IE - E1ID E1ED -> eixo 1, tração",
     "2": "E0E - E0D -> eixo 0, direcional\nE1EE E1IE - E1ID E1ED -> eixo 1, tração\nE2EE E2IE - E2ID E2ED -> eixo 2, livre",
     "3": "E0EE E0IE - E0ID E0ED -> eixo 0, livre\nE1EE E1IE - E1ID E1ED -> eixo 1, livre\nE2EE E2IE - E2ID E2ED -> eixo 2, livre"
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const dadosCompletos = {
-      placa, renavam, chassi, marca, modelo, anoFab, anoMod, kmInicial, 
-      carroceria, combustivel, templateEixos, exercicio, numeroCrlv, 
-      codigoSeguranca, ufVeiculo, nomeProprietario, documentoProprietario, 
-      categoria, rntrc, observacoes
-    };
-    console.log('Dados do Cadastro Unificado:', dadosCompletos);
-    // Aqui você faria a requisição para a sua API
+
+    const formData = new FormData();
+    formData.append('placa', placa);
+    formData.append('renavam', renavam);
+    formData.append('chassi', chassi);
+    formData.append('marca', marca);
+    formData.append('modelo', modelo);
+    formData.append('anoFab', anoFab);
+    formData.append('anoMod', anoMod);
+    formData.append('kmInicial', kmInicial);
+    formData.append('carroceria', carroceria);
+    formData.append('combustivel', combustivel);
+    formData.append('templateEixos', templateEixos);
+    formData.append('exercicio', exercicio);
+    formData.append('numeroCrlv', numeroCrlv);
+    formData.append('codigoSeguranca', codigoSeguranca);
+    formData.append('ufVeiculo', ufVeiculo);
+    formData.append('nomeProprietario', nomeProprietario);
+    formData.append('documentoProprietario', documentoProprietario);
+    formData.append('categoria', categoria);
+    formData.append('rntrc', rntrc);
+    formData.append('observacoes', observacoes);
+
+    if (arquivoCrlv) {
+      formData.append('arquivo_crlv', arquivoCrlv);
+    }
+    
+    if (fotoVeiculo) {
+      formData.append('foto_veiculo', fotoVeiculo);
+    }
+
+    try {
+      const response = await api.post('/crlvs', formData);
+
+      console.log('Cadastro efetuado com sucesso:', response.data);
+      alert('Veículo e CRLV salvos com sucesso!');
+      navigate('/estoque'); 
+    } catch (error) {
+      console.error('Erro ao salvar o veículo e CRLV:', error);
+      alert('Ocorreu um erro ao salvar os dados. Verifica os campos e tenta novamente.');
+    }
   };
 
   return (
+    <div className={styles['body-container'] || ''}>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles['card-header']}>
+            <h2>Cadastro do Veículo & Documentação CRLV</h2>
+          </div>
 
-
-    <div className="body-container">
-          <div className="container">
-      <div className="card">
-        <div className="card-header">
-          <h2>Cadastro do Veículo & Documentação CRLV</h2>
-        </div>
-
-        <form onSubmit={handleSubmit} data-api-endpoint="/crlvs">
-            
+          <form onSubmit={handleSubmit} data-api-endpoint="/crlvs">
+              
             {/* 01. DADOS DO VEÍCULO */}
-            <div className="section-title" style={{ marginTop: 0 }}>01. Dados do Veículo</div>
+            <div className={styles['section-title']} style={{ marginTop: 0 }}>01. Dados do Veículo</div>
             
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="placa">Placa*</label>
                     <input 
                       type="text" 
@@ -70,24 +110,24 @@ function CadastroUnificado() {
                       value={placa} 
                       onChange={(e) => setPlaca(e.target.value)} 
                       placeholder="ABC1D23" 
-                      maxLength="8" 
+                      maxLength={8} 
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="renavam">RENAVAM*</label>
                     <input 
                       type="text" 
                       id="renavam" 
                       value={renavam} 
                       onChange={(e) => setRenavam(e.target.value)} 
-                      maxLength="11" 
+                      maxLength={11} 
                       required 
                     />
                 </div>
             </div>
 
-            <div className="form-group">
+            <div className={styles['form-group']}>
                 <label htmlFor="chassi">Número do Chassi*</label>
                 <input 
                   type="text" 
@@ -95,13 +135,13 @@ function CadastroUnificado() {
                   value={chassi} 
                   onChange={(e) => setChassi(e.target.value)} 
                   placeholder="9BW ZZZ377 VT 000000" 
-                  maxLength="17" 
+                  maxLength={17} 
                   required 
                 />
             </div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="marca">Marca*</label>
                     <input 
                       type="text" 
@@ -112,7 +152,7 @@ function CadastroUnificado() {
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="modelo">Modelo*</label>
                     <input 
                       type="text" 
@@ -125,8 +165,8 @@ function CadastroUnificado() {
                 </div>
             </div>
 
-            <div className="grid-3">
-                <div className="form-group">
+            <div className={styles['grid-3']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="ano_fab">Ano Fab.*</label>
                     <input 
                       type="number" 
@@ -139,7 +179,7 @@ function CadastroUnificado() {
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="ano_mod">Ano Mod.*</label>
                     <input 
                       type="number" 
@@ -152,7 +192,7 @@ function CadastroUnificado() {
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="km_inicial">KM Atual*</label>
                     <input 
                       type="number" 
@@ -165,8 +205,8 @@ function CadastroUnificado() {
                 </div>
             </div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="carroceria">Carroceria*</label>
                     <select 
                       id="carroceria" 
@@ -182,7 +222,7 @@ function CadastroUnificado() {
                         <option value="cacamba">Caçamba</option>
                     </select>
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="combustivel">Combustível*</label>
                     <select 
                       id="combustivel" 
@@ -198,9 +238,9 @@ function CadastroUnificado() {
             </div>
 
             {/* 02. DISPLAY DE EIXOS */}
-            <div className="section-title">02. Display de Rodas (Template)</div>
+            <div className={styles['section-title']}>02. Display de Rodas (Template)</div>
 
-            <div className="form-group">
+            <div className={styles['form-group']}>
                 <label htmlFor="template_eixos_id">Template de Eixos*</label>
                 <select 
                   id="template_eixos_id" 
@@ -216,19 +256,19 @@ function CadastroUnificado() {
             </div>
 
             {templateEixos && (
-              <div className="template-preview-card" id="boxPreview">
-                  <div className="template-preview-title">Estrutura do Layout Selecionado</div>
-                  <div className="template-preview-code" id="textoPreview" style={{ whiteSpace: 'pre-line' }}>
+              <div className={styles['template-preview-card']} id="boxPreview">
+                  <div className={styles['template-preview-title']}>Estrutura do Layout Selecionado</div>
+                  <div className={styles['template-preview-code']} id="textoPreview" style={{ whiteSpace: 'pre-line' }}>
                     {previews[templateEixos]}
                   </div>
               </div>
             )}
 
             {/* 03. DADOS DO CRLV-e */}
-            <div className="section-title">03. Documentação CRLV-e</div>
+            <div className={styles['section-title']}>03. Documentação CRLV-e</div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="exercicio">Ano Exercício*</label>
                     <input 
                       type="number" 
@@ -241,7 +281,7 @@ function CadastroUnificado() {
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="numero_crlv">Número do CRLV-e*</label>
                     <input 
                       type="text" 
@@ -254,8 +294,8 @@ function CadastroUnificado() {
                 </div>
             </div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="codigo_seguranca">Código Segurança CLA*</label>
                     <input 
                       type="text" 
@@ -266,7 +306,7 @@ function CadastroUnificado() {
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="uf_veiculo">UF Licenciamento*</label>
                     <select 
                       id="uf_veiculo" 
@@ -285,8 +325,8 @@ function CadastroUnificado() {
                 </div>
             </div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="nome_proprietario">Nome / Razão Social Proprietário*</label>
                     <input 
                       type="text" 
@@ -297,7 +337,7 @@ function CadastroUnificado() {
                       required 
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="documento_proprietario">CPF / CNPJ Proprietário*</label>
                     <input 
                       type="text" 
@@ -310,8 +350,8 @@ function CadastroUnificado() {
                 </div>
             </div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="categoria">Categoria*</label>
                     <select 
                       id="categoria" 
@@ -324,7 +364,7 @@ function CadastroUnificado() {
                         <option value="oficial">Oficial</option>
                     </select>
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="rntrc">Nº RNTRC (ANTT)</label>
                     <input 
                       type="text" 
@@ -337,36 +377,48 @@ function CadastroUnificado() {
             </div>
 
             {/* 04. MIDIAS E ARQUIVOS */}
-            <div className="section-title">04. Arquivos e Mídia</div>
+            <div className={styles['section-title']}>04. Arquivos e Mídia</div>
 
-            <div className="grid-2">
-                <div className="form-group">
+            <div className={styles['grid-2']}>
+                <div className={styles['form-group']}>
                     <label htmlFor="arquivo_crlv">PDF do CRLV-e*</label>
-                    <input type="file" id="arquivo_crlv" name="arquivo_crlv" accept=".pdf,image/*" required />
+                    <input 
+                      type="file" 
+                      id="arquivo_crlv" 
+                      name="arquivo_crlv" 
+                      accept=".pdf,image/*" 
+                      onChange={(e) => setArquivoCrlv(e.target.files ? e.target.files[0] : null)}
+                      required 
+                    />
                 </div>
-                <div className="form-group">
+                <div className={styles['form-group']}>
                     <label htmlFor="foto_veiculo">Foto do Caminhão</label>
-                    <input type="file" id="foto_veiculo" name="foto_veiculo" accept="image/*" />
+                    <input 
+                      type="file" 
+                      id="foto_veiculo" 
+                      name="foto_veiculo" 
+                      accept="image/*" 
+                      onChange={(e) => setFotoVeiculo(e.target.files ? e.target.files[0] : null)}
+                    />
                 </div>
             </div>
 
-            <div className="form-group">
+            <div className={styles['form-group']}>
                 <label htmlFor="observacoes">Observações Gerais</label>
                 <textarea 
                   id="observacoes" 
                   value={observacoes} 
                   onChange={(e) => setObservacoes(e.target.value)} 
-                  rows="2" 
+                  rows={2} 
                   placeholder="Histórico ou detalhes operacionais adicionais..." 
                 />
             </div>
 
-            <button type="submit" className="btn-submit">Salvar Veículo e CRLV</button>
-        </form>
+            <button type="submit" className={styles['btn-submit']}>Salvar Veículo e CRLV</button>
+          </form>
+        </div>
       </div>
     </div>
-      </div>
-      
   );
 }
 

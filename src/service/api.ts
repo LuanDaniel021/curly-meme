@@ -1,10 +1,23 @@
 const BASE_URL = 'https://fictional-memory-31a3.onrender.com/api';
 
 async function request(endpoint: string, method: string, body: any = null, customHeaders: Record<string, string> = {}) {
+  // Mostra o que está a ser enviado na consola do navegador
+  if (body instanceof FormData) {
+    console.log("--- CONTEÚDO DO FORMDATA ---");
+    for (let [key, value] of body.entries()) {
+      console.log(`${key}:`, value);
+    }
+  } else {
+    console.log("--- BODY JSON ---", body);
+  }
+
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
     ...customHeaders,
   };
+
+  if (!(body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json';
+  }
 
   const token = localStorage.getItem('token');
   if (token) {
@@ -17,7 +30,7 @@ async function request(endpoint: string, method: string, body: any = null, custo
   };
 
   if (body) {
-    config.body = JSON.stringify(body);
+    config.body = body instanceof FormData ? body : JSON.stringify(body);
   }
 
   try {

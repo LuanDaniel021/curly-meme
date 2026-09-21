@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './Cadastro_Pneu.module.css';
 
 function CadastroPneu() {
   // Estados para os campos do formulário
@@ -34,20 +35,20 @@ function CadastroPneu() {
   };
 
   return (
-    <div className="body-container">
-      <div className="container">
-        <div className="card">
-          <div className="card-header">
+    <div className={styles.bodyContainer}>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
             <h2>Cadastro de Pneu</h2>
           </div>
 
           <form onSubmit={handleSubmit} data-api-endpoint="/pneus">
             
             {/* Identificação do Pneu */}
-            <div className="section-title">01. Identificação</div>
+            <div className={styles.sectionTitle}>01. Identificação</div>
             
-            <div className="grid-2">
-              <div className="form-group">
+            <div className={styles.grid2}>
+              <div className={styles.formGroup}>
                 <label htmlFor="fogo">Nº de Fogo / Código*</label>
                 <input 
                   type="text" 
@@ -58,7 +59,7 @@ function CadastroPneu() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="serie">Nº de Série (Fábrica)</label>
                 <input 
                   type="text" 
@@ -70,8 +71,8 @@ function CadastroPneu() {
               </div>
             </div>
 
-            <div className="grid-2">
-              <div className="form-group">
+            <div className={styles.grid2}>
+              <div className={styles.formGroup}>
                 <label htmlFor="marca">Marca*</label>
                 <input 
                   type="text" 
@@ -82,7 +83,7 @@ function CadastroPneu() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="medida">Medida / Dimensão*</label>
                 <input 
                   type="text" 
@@ -96,10 +97,10 @@ function CadastroPneu() {
             </div>
 
             {/* Condição e Vida Útil */}
-            <div className="section-title">02. Status e Ciclo de Vida</div>
+            <div className={styles.sectionTitle}>02. Status e Ciclo de Vida</div>
 
-            <div className="grid-3">
-              <div className="form-group">
+            <div className={styles.grid3}>
+              <div className={styles.formGroup}>
                 <label htmlFor="status_vida">Vida Atual*</label>
                 <select 
                   id="status_vida" 
@@ -113,7 +114,7 @@ function CadastroPneu() {
                   <option value="r3">3ª Recapagem (R3)</option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="status_pneu">Situação*</label>
                 <select 
                   id="status_pneu" 
@@ -127,7 +128,7 @@ function CadastroPneu() {
                   <option value="descartado">Descartado/Sucata</option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="dot">DOT / Fabricações</label>
                 <input 
                   type="text" 
@@ -141,10 +142,10 @@ function CadastroPneu() {
             </div>
 
             {/* Dados Técnicos Iniciais */}
-            <div className="section-title">03. Medição Inicial (Calibração)</div>
+            <div className={styles.sectionTitle}>03. Medição Inicial (Calibração)</div>
 
-            <div className="grid-3">
-              <div className="form-group">
+            <div className={styles.grid3}>
+              <div className={styles.formGroup}>
                 <label htmlFor="sulco_inicial">Sulco Atual (mm)*</label>
                 <input 
                   type="number" 
@@ -156,7 +157,7 @@ function CadastroPneu() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="pressao_inicial">Pressão Atual (PSI)*</label>
                 <input 
                   type="number" 
@@ -167,7 +168,7 @@ function CadastroPneu() {
                   required 
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="valor_compra">Valor de Compra (R$)</label>
                 <input 
                   type="number" 
@@ -180,7 +181,7 @@ function CadastroPneu() {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="observacoes">Observações Gerais</label>
               <textarea 
                 id="observacoes" 
@@ -191,7 +192,7 @@ function CadastroPneu() {
               />
             </div>
 
-            <button type="submit" className="btn-submit">Salvar Pneu</button>
+            <button type="submit" className={styles.btnSubmit}>Salvar Pneu</button>
           </form>
         </div>
       </div>
