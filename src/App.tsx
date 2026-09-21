@@ -3,22 +3,24 @@ import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 // Páginas de Autenticação e Perfil
-import Login from './pages/Login';
-import PerfilUsuario from './pages/Perfil_Usuario';
+import Login from './pages/login/Login';
+import PerfilUsuario from './pages/perfil/PerfilUsuario';
 
 // Páginas Operacionais / Vida Útil dos Pneus (Cliente / Operador)
-import CadastroUnificado from './pages/CadastroUnificado';
-import CadastroCaminhao from './pages/Cadastro_Caminhao';
-import CadastroPneu from './pages/Cadastro_Pneu';
-import RodizioPneus from './pages/Rodizio_Pneus';
-import EstoquePneus from './pages/Estoque_Pneus';
-import InspecaoPneus from './pages/Inspecao_Pneus';
-import DesgastePneu from './pages/Desgaste_Pneu';
-import ManutencaoPneus from './pages/Manutencao_Pneus';
+import CadastroUnificado from './pages/livre/CadastroUnificado';
+import CadastroCaminhao from './pages/livre/Cadastro_Caminhao';
+import CadastroPneu from './pages/livre/Cadastro_Pneu';
+import RodizioPneus from './pages/livre/Rodizio_Pneus';
+import EstoquePneus from './pages/livre/Estoque_Pneus';
+import InspecaoPneus from './pages/livre/Inspecao_Pneus';
+import DesgastePneu from './pages/livre/Desgaste_Pneu';
+import ManutencaoPneus from './pages/livre/Manutencao_Pneus';
+
+import Dashboard from './pages/dashboard/Dashboard';
 
 // Páginas Administrativas (Admin)
-import GerenciarUsuarios from './pages/Gerenciar_Usuarios';
-import ConfigAdm from './pages/Config_Adm';
+import GerenciarUsuarios from './pages/livre/Gerenciar_Usuarios';
+import ConfigAdm from './pages/livre/Config_Adm';
 
 function App() {
   return (
@@ -26,7 +28,7 @@ function App() {
       <Routes>
         {/* Rota Inicial / Login */}
         <Route path="/" element={<Login />} />
-
+        <Route path="/dashboard"element={<Dashboard />}/>
         {/* Rotas Comuns / Perfil */}
         <Route path="/perfil" element={<PerfilUsuario />} />
 

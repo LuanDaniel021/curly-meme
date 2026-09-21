@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../service/api';
+import { api } from '../../service/api';
 import styles from './CadastroUnificado.module.css';
 
 function CadastroUnificado() {
@@ -46,38 +46,55 @@ function CadastroUnificado() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('placa', placa);
-    formData.append('renavam', renavam);
-    formData.append('chassi', chassi);
-    formData.append('marca', marca);
-    formData.append('modelo', modelo);
-    formData.append('anoFab', anoFab);
-    formData.append('anoMod', anoMod);
-    formData.append('kmInicial', kmInicial);
-    formData.append('carroceria', carroceria);
-    formData.append('combustivel', combustivel);
-    formData.append('templateEixos', templateEixos);
-    formData.append('exercicio', exercicio);
-    formData.append('numeroCrlv', numeroCrlv);
-    formData.append('codigoSeguranca', codigoSeguranca);
-    formData.append('ufVeiculo', ufVeiculo);
-    formData.append('nomeProprietario', nomeProprietario);
-    formData.append('documentoProprietario', documentoProprietario);
-    formData.append('categoria', categoria);
-    formData.append('rntrc', rntrc);
-    formData.append('observacoes', observacoes);
+    // const formData = new FormData();
+    // formData.append('placa', placa);
+    // formData.append('renavam', renavam);
+    // formData.append('chassi', chassi);
+    // formData.append('marca', marca);
+    // formData.append('modelo', modelo);
+    // formData.append('anoFab', anoFab);
+    // formData.append('anoMod', anoMod);
+    // formData.append('kmInicial', kmInicial);
+    // formData.append('carroceria', carroceria);
+    // formData.append('combustivel', combustivel);
+    // formData.append('templateEixos', templateEixos);
+    // formData.append('exercicio', exercicio);
+    // formData.append('numeroCrlv', numeroCrlv);
+    // formData.append('codigoSeguranca', codigoSeguranca);
+    // formData.append('ufVeiculo', ufVeiculo);
+    // formData.append('nomeProprietario', nomeProprietario);
+    // formData.append('documentoProprietario', documentoProprietario);
+    // formData.append('categoria', categoria);
+    // formData.append('rntrc', rntrc);
+    // formData.append('observacoes', observacoes);
 
-    if (arquivoCrlv) {
-      formData.append('arquivo_crlv', arquivoCrlv);
-    }
+    // if (arquivoCrlv) {
+    //   formData.append('arquivo_crlv', arquivoCrlv);
+    // }
     
-    if (fotoVeiculo) {
-      formData.append('foto_veiculo', fotoVeiculo);
-    }
+    // if (fotoVeiculo) {
+    //   formData.append('foto_veiculo', fotoVeiculo);
+    // }
 
     try {
-      const response = await api.post('/crlvs', formData);
+      const response = await api.post('/veiculos', {
+        "km": 1000,
+        "crlv": {
+          "uf": "SP",
+          "crv": "123456789",
+          "tipo": "Caminhão",
+          "marca": "Mercedes-Benz",
+          "placa": "ABC-1235",
+          "chassi": "9BM12345678901236",
+          "especie": "Caminhão de Carga",
+          "renavam": "123456789016",
+          "exercicio": 2023,
+          "ano_modelo": 2022,
+          "ano_fabricacao": 2021
+        },
+        "status": "Ativo",
+        "template": "Caminhão 6x2"
+      });
 
       console.log('Cadastro efetuado com sucesso:', response.data);
       alert('Veículo e CRLV salvos com sucesso!');
@@ -415,6 +432,7 @@ function CadastroUnificado() {
             </div>
 
             <button type="submit" className={styles['btn-submit']}>Salvar Veículo e CRLV</button>
+            
           </form>
         </div>
       </div>
