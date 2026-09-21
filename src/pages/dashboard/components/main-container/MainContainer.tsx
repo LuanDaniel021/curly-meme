@@ -1,23 +1,30 @@
 
 import styles from '../../Dashboard.module.css';
 
-import DashboardView from './DashboardView';
+import MainView from './MainView';
+
+import VeiculosView  from './veiculos/VeiculosView';
+import PneusView from './pneus/PneusView';
+import RodizioView from './rodizio/RodizioView';
+import EstoqueView from './estoque/EstoqueView';
+import InspecoesView from './inspecoes/InspecoesView';
+import ManutencoesView from './manutencoes/ManutencoesView';
+
 import UsuariosView from './usuarios/UsuariosView';
-import VeiculosView  from './VeiculosView';
 
 function MainContainer({ activeTab } : {activeTab:string})
 {
   return (
     <main className={styles['main-content']}>
 
-      {activeTab === 'dashboard'  && <DashboardView />}
+      {activeTab === 'dashboard'  && <MainView />}
 
       {activeTab === 'veiculo'    && <VeiculosView />}
-      {activeTab === 'pneu'       && <DashboardView />}
-      {activeTab === 'rodizio'    && <DashboardView />}
-      {activeTab === 'estoque'    && <DashboardView />}
-      {activeTab === 'inspecao'   && <DashboardView />}
-      {activeTab === 'menutencao' && <DashboardView />}
+      {activeTab === 'pneu'       && <PneusView />}
+      {activeTab === 'rodizio'    && <RodizioView />}
+      {activeTab === 'estoque'    && <EstoqueView />}
+      {activeTab === 'inspecao'   && <InspecoesView />}
+      {activeTab === 'menutencao' && <ManutencoesView />}
       {activeTab === 'usuarios'   && <UsuariosView />}
 
     </main>

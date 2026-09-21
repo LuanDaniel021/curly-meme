@@ -1,7 +1,7 @@
 
 import styles from '../../Dashboard.module.css';
 
-function DashboardView() {
+function MainView() {
     return <>
         <section className={styles['welcome-section']}>
           <h2>Olá, seja bem-vindo!</h2>
@@ -137,4 +137,4 @@ function DashboardView() {
       </>
 }
 
-export default DashboardView;
+export default MainView;
