@@ -9,23 +9,32 @@ import RodizioView from './rodizio/RodizioView';
 import EstoqueView from './estoque/EstoqueView';
 import InspecoesView from './inspecoes/InspecoesView';
 import ManutencoesView from './manutencoes/ManutencoesView';
+import DesgasteView from './desgaste/DesgasteView';
 
 import UsuariosView from './usuarios/UsuariosView';
 
+
 function MainContainer({ activeTab } : {activeTab:string})
 {
+  const handler = (tab: string) => {
+    switch (tab) {
+      case 'veiculo'    : return <VeiculosView />;
+      case 'pneu'       : return <PneusView />;
+      case 'rodizio'    : return <RodizioView />;
+      case 'estoque'    : return <EstoqueView />;
+      case 'inspecao'   : return <InspecoesView />;
+      case 'manutencao' : return <ManutencoesView />;
+      case 'desgaste'   : return <DesgasteView />;
+      case 'usuarios'   : return <UsuariosView />;
+      default: return <MainView/>
+    }
+  }
   return (
     <main className={styles['main-content']}>
 
-      {activeTab === 'dashboard'  && <MainView />}
-
-      {activeTab === 'veiculo'    && <VeiculosView />}
-      {activeTab === 'pneu'       && <PneusView />}
-      {activeTab === 'rodizio'    && <RodizioView />}
-      {activeTab === 'estoque'    && <EstoqueView />}
-      {activeTab === 'inspecao'   && <InspecoesView />}
-      {activeTab === 'menutencao' && <ManutencoesView />}
-      {activeTab === 'usuarios'   && <UsuariosView />}
+      {
+        handler(activeTab)
+      }
 
     </main>
   );

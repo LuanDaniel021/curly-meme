@@ -10,7 +10,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
   // Lista centralizada de itens da navegação
   const navItems = [
     { id: 'dashboard',  label: 'Dashboard',   icon: '⌂' },
-    { id: 'veiculos',   label: 'Veículos',    icon: '🚛' },
+    { id: 'veiculo',   label: 'Veículos',    icon: '🚛' },
     { id: 'pneu',       label: 'Pneus',       icon: '◉' },
     { id: 'rodizio',    label: 'Rodízio',     icon: '↻' },
     { id: 'estoque',    label: 'Estoque',     icon: '▦' },
@@ -20,7 +20,9 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
   ];
 
   return (
+
     <aside className={styles['sidebar']}>
+
       <div className={styles['sidebar-header']}>
         <h2>Gestão de Frotas</h2>
       </div>
