@@ -51,12 +51,10 @@
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
+  width: 100%;
+  min-width: 100%;
   min-height: 100svh;
+  text-align: center;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -64,6 +62,7 @@
 
 body {
   margin: 0;
+  padding: 0;
 }
 
 h1,

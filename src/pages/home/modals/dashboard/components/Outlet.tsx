@@ -10,6 +10,7 @@ import ManutencoesView from './outlet-components/ManutencoesView';
 import DesgasteView from './outlet-components/DesgasteView';
 
 import UsuariosView from './outlet-components/UsuariosView';
+import TemplatesView from './outlet-components/TemplatesView';
 
 function OutletView() {
     return (
@@ -161,7 +162,8 @@ function Outlet({ activeTab } : {activeTab:string})
       case 'manutencao' : return <ManutencoesView />;
       case 'desgaste'   : return <DesgasteView />;
       case 'usuarios'   : return <UsuariosView />;
-      default           : return <OutletView />
+      case 'def'        : return <OutletView />
+      default           : return <TemplatesView />
     }
   }
   return (

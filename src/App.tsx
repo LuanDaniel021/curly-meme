@@ -19,8 +19,6 @@ import ManutencaoPneus from './pages/livre/Manutencao_Pneus';
 import Dashboard from './pages/home/modals/dashboard/Dashboard';
 
 // Páginas Administrativas (Admin)
-import GerenciarUsuarios from './pages/livre/Gerenciar_Usuarios';
-import ConfigAdm from './pages/livre/Config_Adm';
 
 function App() {
   return (
@@ -41,10 +39,6 @@ function App() {
         <Route path="/inspecao" element={<InspecaoPneus />} />
         <Route path="/desgaste" element={<DesgastePneu />} />
         <Route path="/manutencao" element={<ManutencaoPneus />} />
-
-        {/* Rotas Administrativas (Admin) */}
-        <Route path="/admin/usuarios" element={<GerenciarUsuarios />} />
-        <Route path="/admin/config" element={<ConfigAdm />} />
 
         {/* Fallback para URLs inválidas */}
         <Route path="*" element={<Navigate to="/" replace />} />
