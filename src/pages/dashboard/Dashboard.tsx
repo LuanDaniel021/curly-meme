@@ -2,7 +2,7 @@
 import styles from './Dashboard.module.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import MainContainer from './components/main-container/MainContainer';
+import Outlet from './components/main-container/Outlet';
 import { api } from '../../service/api';
 import { useEffect, useState } from 'react';
 
@@ -16,19 +16,8 @@ function Dashboard() {
     () => {
       const fetchUser = async () => {
         try {
-
-          // await api.get('users/info')
-          //   .catch(
-          //     (data) => {
-          //       console.log(data)
-          //       setIsAdmin(!(data.role === "user"));
-          //     }
-          //   );
-
           const data = await api.get('users/info')
-  
           setIsAdmin(!(data.role === "user"));
-
         }
         catch (error) {
           console.error('Erro ao obter informacoes:', error);
@@ -51,7 +40,7 @@ function Dashboard() {
 
         <Header />
 
-        <MainContainer activeTab={activeTab} />
+        <Outlet activeTab={activeTab} />
 
       </div>
 
