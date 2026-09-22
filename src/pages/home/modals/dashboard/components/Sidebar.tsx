@@ -1,4 +1,4 @@
-import styles from '../Dashboard.module.css';
+import styles from '../css/Dashboard.module.css';
 
 interface SidebarProps {
   isAdmin: boolean;

@@ -1,4 +1,6 @@
-import styles from './PerfilUsuario.module.css';
+
+import styles from './css/PerfilUsuario.module.css';
+
 import { useState } from 'react';
 
 function PerfilUsuario() {

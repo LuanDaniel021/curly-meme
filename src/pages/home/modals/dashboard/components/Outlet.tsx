@@ -1,5 +1,5 @@
 
-import styles from '../../Dashboard.module.css';
+import styles from '../css/Dashboard.module.css';
 
 import VeiculosView  from './outlet-components/VeiculosView';
 import PneusView from './outlet-components/PneusView';
