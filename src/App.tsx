@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 // Páginas de Autenticação e Perfil
 import Login from './pages/login/Login';
-import PerfilUsuario from './pages/home/modals/perfil/PerfilUsuario';
+import PerfilUsuario from './pages/home/modals/profile/Profile';
 
 // Páginas Operacionais / Vida Útil dos Pneus (Cliente / Operador)
 import CadastroUnificado from './pages/livre/CadastroUnificado';

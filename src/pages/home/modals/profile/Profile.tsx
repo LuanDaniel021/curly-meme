@@ -1,20 +1,21 @@
 
-import styles from './css/PerfilUsuario.module.css';
+import styles from './css/Profile.module.css';
 
 import { useState } from 'react';
 
-function PerfilUsuario() {
+function Banner() {
+  return (
+    <div className={styles['banner']}></div>
+  )
+}
+
+function Content() {
+  
   const [activeTab, setActiveTab] = useState('atividades');
 
   return (
-    <div className={styles['page-container']}>
+      <div className={styles['content']}>
 
-      {/* BANNER / CAPA */}
-      <div className={styles['cover-container']}></div>
-
-      {/* GRID DE CONTEÚDO */}
-      <div className={styles['content-container']}>
-        
         {/* CARTÃO LATERAL DO PERFIL */}
         <aside className={styles['profile-card']}>
           <div className={styles['avatar-wrapper']}>
@@ -94,6 +95,17 @@ function PerfilUsuario() {
         </main>
 
       </div>
+  )
+}
+
+function PerfilUsuario() {
+  return (
+    <div className={styles['profile']}>
+
+      <Banner />
+      
+      <Content />
+      
     </div>
   );
 }

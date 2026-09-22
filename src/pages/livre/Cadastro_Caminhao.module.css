@@ -13,7 +13,7 @@
     --accent-green: #34d399;
 }
 
-* {
+.body-countainer * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;

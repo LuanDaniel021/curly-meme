@@ -1,43 +1,51 @@
 
+import { useEffect, useState } from 'react'
 import styles from '../../css/UsuariosView.module.css'
+import { Header, Content } from './usuarios/components/user.jsx'
+import { api } from '../../../../../../service/api';
 
-function Header() {
-  return (
-    <header className={styles['header']}>
-        
-      <div>
-        
-        <h1 className={styles['title']}>Gestão de Usuários</h1>
-        
-        <p className={styles['subtitle']}>Gerencie permissões, perfis e acessos do sistema.</p>
-      
-      </div>
-      
-      <button className={styles['btn-create']}>
-      
-        <span>➕</span> Criar Usuário
-      
-      </button>
-      
-    </header>
-  )
+// 1. Dados mockados para exemplo
+
+// interface Usuario {
+//   id: string;
+//   nome: string;
+//   email: string;
+//   role: string;
+//   dataCriacao: string;
+// }
+
+interface MockUser {
+  id: string
+  nome: string
+  email: string
+  iniciais: string
+  role: string
+  dataCriacao: string
 }
 
-function Content() {
-  return (
-    <div className={styles['']}>
-    </div>
-  )
-}
 
 function UsuariosView() {
+
+  const [users, setUsers] = useState<MockUser[]>([]);
+
+  useEffect( () => {
+    const handler = async () => {
+      try {
+        const res = await api.get('users/admin');
+        setUsers(res.data);
+      } catch (e) {
+        console.error('Erro ao buscar usuários:', e);
+      }
+    }
+    handler()
+  },[] )
+
+  ;
+
   return (
     <div className={styles['container']}>
-      
       <Header />
-
-      <Content />
-
+      <Content users={users} />
     </div>
   )
 }

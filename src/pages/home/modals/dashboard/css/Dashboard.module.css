@@ -183,7 +183,7 @@
 
 .main-content {
     flex: 1;
-    padding: 32px;
+    padding: 12px;
 }
 
 .welcome-section {
@@ -374,7 +374,7 @@
     }
 
     .main-content {
-        padding: 20px;
+        padding: 12px;
     }
 
     .summary-grid {

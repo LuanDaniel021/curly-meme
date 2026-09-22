@@ -10,6 +10,7 @@ import ManutencoesView from './outlet-components/ManutencoesView';
 import DesgasteView from './outlet-components/DesgasteView';
 
 import UsuariosView from './outlet-components/UsuariosView';
+
 import TemplatesView from './outlet-components/TemplatesView';
 
 function OutletView() {
