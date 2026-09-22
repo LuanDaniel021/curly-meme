@@ -3,7 +3,7 @@ import styles from './Dashboard.module.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Outlet from './components/Outlet';
-import { api } from '../../service/api';
+import { api } from '../../../../service/api';
 import { useEffect, useState } from 'react';
 
 function Dashboard() {

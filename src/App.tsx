@@ -16,7 +16,7 @@ import InspecaoPneus from './pages/livre/Inspecao_Pneus';
 import DesgastePneu from './pages/livre/Desgaste_Pneu';
 import ManutencaoPneus from './pages/livre/Manutencao_Pneus';
 
-import Dashboard from './pages/dashboard/Dashboard';
+import Dashboard from './pages/home/modals/dashboard/Dashboard';
 
 // Páginas Administrativas (Admin)
 import GerenciarUsuarios from './pages/livre/Gerenciar_Usuarios';
