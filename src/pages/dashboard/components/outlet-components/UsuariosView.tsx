@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import styles from './UsuariosView.module.css';
-import { api } from '../../../../../service/api';
+import { api } from '../../../../service/api';
 
 // ==========================================
 // TIPAGENS

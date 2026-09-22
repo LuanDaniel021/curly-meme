@@ -1,15 +1,15 @@
 
 import styles from '../../Dashboard.module.css';
 
-import VeiculosView  from './main-container/veiculos/VeiculosView';
-import PneusView from './main-container/pneus/PneusView';
-import RodizioView from './main-container/rodizio/RodizioView';
-import EstoqueView from './main-container/estoque/EstoqueView';
-import InspecoesView from './main-container/inspecoes/InspecoesView';
-import ManutencoesView from './main-container/manutencoes/ManutencoesView';
-import DesgasteView from './main-container/desgaste/DesgasteView';
+import VeiculosView  from './outlet-components/VeiculosView';
+import PneusView from './outlet-components/PneusView';
+import RodizioView from './outlet-components/RodizioView';
+import EstoqueView from './outlet-components/EstoqueView';
+import InspecoesView from './outlet-components/InspecoesView';
+import ManutencoesView from './outlet-components/ManutencoesView';
+import DesgasteView from './outlet-components/DesgasteView';
 
-import UsuariosView from './main-container/usuarios/UsuariosView';
+import UsuariosView from './outlet-components/UsuariosView';
 
 function OutletView() {
     return (
