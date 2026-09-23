@@ -9,11 +9,7 @@ import { useEffect, useState } from 'react';
 
 import { api } from '../../../../service/api';
 
-interface DashboardProps {
-  onSelectModal: (tab: string) => void;
-}
-
-function Dashboard( { onSelectModal } : DashboardProps ) {
+function Dashboard() {
 
   const [activeTab, setActiveTab] = useState('home');
 
