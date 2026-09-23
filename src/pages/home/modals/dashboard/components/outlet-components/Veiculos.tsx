@@ -3,16 +3,13 @@ import styles from '../../css/Veiculos.module.css';
 
 import Modelo3dView from "./Modelo3dView";
 
-import React from 'react';
-import styles from './Header.module.css';
-
-export default function Header() {
+function Header() {
   return (
-    <header className={styles.header}>
-      <div className={styles.plateArea}>
-        <span className={styles.eyebrow}>Placa do Veículo</span>
-        <div className={styles.plate}>
-          <div className={styles.plateHeader}>
+    <header className={styles['header']}>
+      <div className={styles['plate-area']}>
+        <span className={styles['eyebrow']}>Placa do Veículo</span>
+        <div className={styles['plate']}>
+          <div className={styles['plate-header']}>
             BR <span>•</span> BRASIL
           </div>
           <input
@@ -20,7 +17,7 @@ export default function Header() {
             placeholder="ABC1D23"
             maxLength={7}
           />
-          <span className={styles.plateCountry}>BR</span>
+          <span className={styles['plate-country']}>BR</span>
         </div>
       </div>
     </header>
