@@ -162,7 +162,7 @@ function Outlet({ activeTab } : {activeTab:string})
       case 'manutencao' : return <ManutencoesView />;
       case 'desgaste'   : return <DesgasteView />;
       case 'usuarios'   : return <UsuariosView />;
-      case 'templates'  : return <AxisBuilder />
+      case 'templates-criar'  : return <AxisBuilder />
       default           : return <OutletView />
     }
   }

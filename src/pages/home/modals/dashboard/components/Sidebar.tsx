@@ -10,17 +10,15 @@ interface SidebarProps {
 
 const OPCOES_VEICULO = [
   { id: 'veiculo-3d-geral', label: 'Visão Geral 3D' },
+  { id: 'veiculo-3d-geral', label: 'Visão Geral 3D' },
   { id: 'veiculo-3d-pneus', label: 'Verificar Pneus' },
 ];
 
 const OPCOES_PNEU = [
-  { id: 'pneu-estoque', label: 'Estoque' },
   { id: 'desgaste', label: 'Desgaste entre medições' },
 ];
 
 const OPCOES_TEMPLATES = [
-  { id: 'templates-inspecao', label: 'Templates de Inspeção' },
-  { id: 'templates-manutencao', label: 'Templates de Manutenção' },
   { id: 'templates-criar', label: 'Novo Template' },
 ];
 
