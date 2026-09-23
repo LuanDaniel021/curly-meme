@@ -7,7 +7,6 @@ interface SidebarProps {
   onSelectTab: (tab: string) => void;
 }
 
-// Opções do modelo 3D / Veículos
 const OPCOES_VEICULO = [
   { id: 'veiculo-3d-geral', label: 'Visão Geral 3D' },
   { id: 'veiculo-3d-pneus', label: 'Verificar Pneus' },
@@ -15,16 +14,18 @@ const OPCOES_VEICULO = [
 ];
 
 function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
-  // Estado para controlar se o submenu de veículos está aberto
   const [isVeiculosOpen, setIsVeiculosOpen] = useState(false);
+
+  // O item de veículos fica destacado se ele mesmo ou alguma sub-aba estiver ativa
+  const isVeiculoActive =
+    activeTab === 'veiculo' || OPCOES_VEICULO.some((opt) => opt.id === activeTab);
 
   const getItemClassName = (tabId: string) =>
     `${styles['nav-item']} ${activeTab === tabId ? styles['active'] : ''}`;
 
-  // Trata o clique no botão principal de Veículos
   const handleVeiculosClick = () => {
-    onSelectTab('veiculo'); // Seleciona a aba principal do 3D
-    setIsVeiculosOpen((prev) => !prev); // Abre/fecha as subopções
+    onSelectTab('veiculo');
+    setIsVeiculosOpen((prev) => !prev);
   };
 
   return (
@@ -39,18 +40,22 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('dashboard')}
           onClick={() => onSelectTab('dashboard')}
         >
-          <span>⌂</span> Dashboard
+          <span>⌂</span>
+          <span className={styles['nav-label']}>Dashboard</span>
         </button>
 
-        {/* Item Expansível: Veículos */}
+        {/* Grupo Expansível: Veículos */}
         <div className={styles['nav-group']}>
           <button
             type="button"
-            className={`${getItemClassName('veiculo')} ${styles['nav-item-expandable']}`}
+            className={`${styles['nav-item']} ${
+              isVeiculoActive ? styles['active'] : ''
+            }`}
             onClick={handleVeiculosClick}
             aria-expanded={isVeiculosOpen}
           >
-            <span>🚛</span> Veículos
+            <span>🚛</span>
+            <span className={styles['nav-label']}>Veículos</span>
             <span className={styles['chevron']}>
               {isVeiculosOpen ? '▾' : '▸'}
             </span>
@@ -80,7 +85,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('pneu')}
           onClick={() => onSelectTab('pneu')}
         >
-          <span>◉</span> Pneus
+          <span>◉</span>
+          <span className={styles['nav-label']}>Pneus</span>
         </button>
 
         <button
@@ -88,7 +94,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('rodizio')}
           onClick={() => onSelectTab('rodizio')}
         >
-          <span>↻</span> Rodízio
+          <span>↻</span>
+          <span className={styles['nav-label']}>Rodízio</span>
         </button>
 
         <button
@@ -96,7 +103,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('estoque')}
           onClick={() => onSelectTab('estoque')}
         >
-          <span>▦</span> Estoque
+          <span>▦</span>
+          <span className={styles['nav-label']}>Estoque</span>
         </button>
 
         <button
@@ -104,7 +112,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('inspecao')}
           onClick={() => onSelectTab('inspecao')}
         >
-          <span>✓</span> Inspeções
+          <span>✓</span>
+          <span className={styles['nav-label']}>Inspeções</span>
         </button>
 
         <button
@@ -112,7 +121,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('manutencao')}
           onClick={() => onSelectTab('manutencao')}
         >
-          <span>⚙</span> Manutenções
+          <span>⚙</span>
+          <span className={styles['nav-label']}>Manutenções</span>
         </button>
 
         <button
@@ -120,7 +130,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('desgaste')}
           onClick={() => onSelectTab('desgaste')}
         >
-          <span>↘</span> Desgaste
+          <span>↘</span>
+          <span className={styles['nav-label']}>Desgaste</span>
         </button>
       </nav>
 
@@ -131,7 +142,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
             className={getItemClassName('usuarios')}
             onClick={() => onSelectTab('usuarios')}
           >
-            <span>♙</span> Usuários
+            <span>♙</span>
+            <span className={styles['nav-label']}>Usuários</span>
           </button>
         )}
 
@@ -140,7 +152,8 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           className={getItemClassName('config')}
           onClick={() => onSelectTab('config')}
         >
-          <span>⚙</span> Configurações
+          <span>⚙</span>
+          <span className={styles['nav-label']}>Configurações</span>
         </button>
       </div>
     </aside>
