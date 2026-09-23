@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../../css/InspecoesView.module.css'
+import styles from '../../../css/InspecoesView.module.css'
 
 // ============================================================================
 // DADOS MOCKADOS
@@ -263,9 +263,12 @@ function Content({
 }) {
   return (
     <div className={styles['content']}>
-      <DetailsHeader tire={tire} />
+      
 
       <div className={styles['details-grid']}>
+
+        <DetailsHeader tire={tire} />
+        
         <VehicleCard vehicle={vehicleRecord} />
 
         <StatusCard tire={tire} />

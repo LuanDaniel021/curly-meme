@@ -3,7 +3,6 @@
    ========================================================================== */
 .container {
   display: flex;
-  flex-direction: column;
   gap: 1.5rem;
   padding: 2rem;
   background-color: var(--bg-main);
@@ -80,7 +79,7 @@
    ========================================================================== */
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
   margin-top: 1.25rem;
 }

@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 
-import '../../css/Templates.module.css';
+import '../../../css/Templates.module.css';
 
 // --- TIPOS ---
 export type EixoItem = {
