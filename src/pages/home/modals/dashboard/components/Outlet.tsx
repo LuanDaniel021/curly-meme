@@ -3,7 +3,7 @@ import styles from '../css/Dashboard.module.css';
 
 import PneusView from './outlet-components/Pneus';
 
-import ManutencoesView from './outlet-components/ManutencoesView';
+import ManutencoesView from './outlet-components/Manutencoes';
 import DesgasteView from './outlet-components/DesgasteView';
 
 import UsuariosView from './outlet-components/Usuarios';
