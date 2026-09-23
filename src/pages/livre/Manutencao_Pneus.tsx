@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 
 function EnvioRecapagem() {
   // Estados para os campos do formulário
@@ -13,7 +13,7 @@ function EnvioRecapagem() {
   const [proximaVida, setProximaVida] = useState('R1');
   const [observacoes, setObservacoes] = useState('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const dadosEnvio = {
       pneuId,

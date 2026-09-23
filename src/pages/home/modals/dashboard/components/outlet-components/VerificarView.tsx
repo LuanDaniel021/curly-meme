@@ -197,7 +197,9 @@ function VerificarView() {
 
     const vehicleData = "123";
 
-    const onTireUpdated = (o: object) => {};
+    const onTireUpdated = (updatedTire: { pressure?: string }) => {
+        if (updatedTire.pressure) setDisplayPressure(updatedTire.pressure);
+    };
 
     const onBack = () => {};
 

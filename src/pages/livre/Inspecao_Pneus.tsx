@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 
 function CadastroPneu() {
   // Estados para os campos do formulário
@@ -15,7 +15,7 @@ function CadastroPneu() {
     setRodaAtiva({ codigo, fogo, titulo: `Roda: ${codigo} (${descricao})` });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const dadosInspecao = {
       veiculoId,

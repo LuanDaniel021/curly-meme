@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import styles from './Cadastro_Caminhao.module.css';
 
 function CadastroCaminhao() {
@@ -23,7 +23,7 @@ function CadastroCaminhao() {
     "3": "E0EE E0IE - E0ID E0ED -> eixo 0, livre\nE1EE E1IE - E1ID E1ED -> eixo 1, livre\nE2EE E2IE - E2ID E2ED -> eixo 2, livre"
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const dadosFormulario = {
       placa, renavam, chassi, templateEixos, marca, modelo, anoFab, anoMod, kmInicial, carroceria, combustivel, observacoes

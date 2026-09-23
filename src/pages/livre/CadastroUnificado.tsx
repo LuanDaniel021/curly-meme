@@ -33,8 +33,8 @@ function CadastroUnificado() {
   const [observacoes, setObservacoes] = useState('');
 
   // Estados para os Ficheiros (PDF do CRLV e Foto)
-  const [arquivoCrlv, setArquivoCrlv] = useState<File | null>(null);
-  const [fotoVeiculo, setFotoVeiculo] = useState<File | null>(null);
+  const [, setArquivoCrlv] = useState<File | null>(null);
+  const [, setFotoVeiculo] = useState<File | null>(null);
 
   // Textos de preview baseados na seleção do template
   const previews: Record<string, string> = {

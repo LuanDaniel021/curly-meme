@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 
 function EstoquePneus() {
   // Estados para os campos do formulário de entrada
@@ -11,7 +11,7 @@ function EstoquePneus() {
   const [sulcoInicial, setSulcoInicial] = useState('');
   const [localizacao, setLocalizacao] = useState('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const dadosEstoque = {
       numeroFogo,

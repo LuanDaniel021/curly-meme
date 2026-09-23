@@ -23,7 +23,7 @@ export function THead() {
   )
 }
 
-export function TBody({ users = [] }) {
+export function TBody({ users = [] }: { users?: MockUser[] }) {
   if (users.length === 0) {
     return (
       <tbody>
@@ -69,7 +69,7 @@ export function TBody({ users = [] }) {
   )
 }
 
-function TableWrapper({ users = [] }) {
+function TableWrapper({ users = [] }: { users?: MockUser[] }) {
   const totalUsers = users.length;
 
   return (

@@ -48,14 +48,9 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
     
   const getItemClassName = (tabId: string) => `${styles['nav-item']} ${activeTab === tabId ? styles['active'] : ''}`;
 
-  const handleVeiculosClick = () => {
-    onSelectTab('veiculo');
-    setIsVeiculosOpen((prev) => !prev);
-  };
-
-    const handleToggleClick = (tab:string, fun:(b:boolean)=>void) => {
+  const handleToggleClick = (tab: string, toggle: (value: (previous: boolean) => boolean) => void) => {
     onSelectTab(tab);
-    fun((prev) => !prev);
+    toggle((previous) => !previous);
   };
 
   return (

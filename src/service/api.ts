@@ -1,10 +1,15 @@
 const BASE_URL = 'https://fictional-memory-31a3.onrender.com/api';
 
-async function request(endpoint: string, method: string, body: any = null, customHeaders: Record<string, string> = {}) {
+async function request(
+  endpoint: string,
+  method: string,
+  body: unknown = null,
+  customHeaders: Record<string, string> = {},
+) {
   // Mostra o que está a ser enviado na consola do navegador
   if (body instanceof FormData) {
     console.log("--- CONTEÚDO DO FORMDATA ---");
-    for (let [key, value] of body.entries()) {
+    for (const [key, value] of body.entries()) {
       console.log(`${key}:`, value);
     }
   } else {
@@ -38,7 +43,10 @@ async function request(endpoint: string, method: string, body: any = null, custo
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error((errorData as any).message || `Erro ${response.status}: ${response.statusText}`);
+      const message = typeof errorData === 'object' && errorData !== null && 'message' in errorData
+        ? String(errorData.message)
+        : `Erro ${response.status}: ${response.statusText}`;
+      throw new Error(message);
     }
 
     const contentType = response.headers.get('content-type');
@@ -55,8 +63,8 @@ async function request(endpoint: string, method: string, body: any = null, custo
 
 export const api = {
   get: (endpoint: string, headers?: Record<string, string>) => request(endpoint, 'GET', null, headers),
-  post: (endpoint: string, body?: any, headers?: Record<string, string>) => request(endpoint, 'POST', body, headers),
-  put: (endpoint: string, body?: any, headers?: Record<string, string>) => request(endpoint, 'PUT', body, headers),
-  patch: (endpoint: string, body?: any, headers?: Record<string, string>) => request(endpoint, 'PATCH', body, headers),
+  post: (endpoint: string, body?: unknown, headers?: Record<string, string>) => request(endpoint, 'POST', body, headers),
+  put: (endpoint: string, body?: unknown, headers?: Record<string, string>) => request(endpoint, 'PUT', body, headers),
+  patch: (endpoint: string, body?: unknown, headers?: Record<string, string>) => request(endpoint, 'PATCH', body, headers),
   delete: (endpoint: string, headers?: Record<string, string>) => request(endpoint, 'DELETE', null, headers),
 };

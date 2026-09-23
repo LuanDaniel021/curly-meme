@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 
 import '../../css/Templates.module.css';
 
@@ -189,29 +189,28 @@ export default function AxisBuilder() {
     lista: Omit<EixoItem, "eixo" | "visual" | "posicoes">[]
   ): EixoItem[] => {
     return lista.map((item, idx) => {
-      let visualText = "";
-      let posicoes: string[] = [];
-
       if (item.tipo === "simples") {
         const esq = `E${idx}E`;
         const dir = `E${idx}D`;
-        visualText = `${esq} - ${dir}`;
-        posicoes = [esq, "-", "-", dir];
-      } else {
-        const ee = `E${idx}EE`;
-        const ed = `E${idx}IE`;
-        const id = `E${idx}ID`;
-        const dd = `E${idx}ED`;
-        visualText = `${ee} ${ed} - ${id} ${dd}`;
-        posicoes = [ee, ed, id, dd];
+        return {
+          eixo: idx,
+          tipo: item.tipo,
+          funcao: item.funcao,
+          visual: `${esq} - ${dir}`,
+          posicoes: [esq, "-", "-", dir],
+        };
       }
 
+      const ee = `E${idx}EE`;
+      const ed = `E${idx}IE`;
+      const id = `E${idx}ID`;
+      const dd = `E${idx}ED`;
       return {
         eixo: idx,
         tipo: item.tipo,
         funcao: item.funcao,
-        visual: visualText,
-        posicoes,
+        visual: `${ee} ${ed} - ${id} ${dd}`,
+        posicoes: [ee, ed, id, dd],
       };
     });
   };
