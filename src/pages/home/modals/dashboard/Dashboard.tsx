@@ -9,7 +9,11 @@ import { useEffect, useState } from 'react';
 
 import { api } from '../../../../service/api';
 
-function Dashboard() {
+interface DashboardProps {
+  onSelectModal: (tab: string) => void;
+}
+
+function Dashboard( { onSelectModal } : DashboardProps ) {
 
   const [activeTab, setActiveTab] = useState('home');
 
@@ -41,7 +45,9 @@ function Dashboard() {
 
       <div className={styles['dashboard-body']}>
 
-        <Header />
+        <Header 
+          onSelectModal={onSelectModal}
+        />
 
         <Outlet activeTab={activeTab} />
 

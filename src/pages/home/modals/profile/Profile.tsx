@@ -3,6 +3,22 @@ import styles from './css/Profile.module.css';
 
 import { useState } from 'react';
 
+interface ProfileProps {
+  onSelectModal: (tab: string) => void;
+}
+
+function Header( {onSelectModal} : ProfileProps ) {
+  return (
+    <div className={styles['']}>
+      <button
+        onClick={() => onSelectModal('dashboard')}
+      >
+        Voltar
+      </button>
+    </div>
+  )
+}
+
 function Banner() {
   return (
     <div className={styles['banner']}></div>
@@ -98,9 +114,11 @@ function Content() {
   )
 }
 
-function PerfilUsuario() {
+function PerfilUsuario( {onSelectModal} : ProfileProps ) {
   return (
     <div className={styles['profile']}>
+
+      <Header onSelectModal={onSelectModal}/>
 
       <Banner />
       

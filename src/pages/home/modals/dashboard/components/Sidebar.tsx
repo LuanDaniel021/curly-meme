@@ -20,7 +20,6 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
   ];
 
   return (
-
     <aside className={styles['sidebar']}>
 
       <div className={styles['sidebar-header']}>
@@ -59,6 +58,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           <span>⚙</span> Configurações
         </button>
       </div>
+
     </aside>
   );
 }

@@ -4,7 +4,6 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 // Páginas de Autenticação e Perfil
 import Login from './pages/login/Login';
-import PerfilUsuario from './pages/home/modals/profile/Profile';
 
 // Páginas Operacionais / Vida Útil dos Pneus (Cliente / Operador)
 import CadastroUnificado from './pages/livre/CadastroUnificado';
@@ -26,9 +25,11 @@ function App() {
       <Routes>
         {/* Rota Inicial / Login */}
         <Route path="/" element={<Login />} />
+        
         <Route path="/dashboard"element={<Dashboard />}/>
+        
         {/* Rotas Comuns / Perfil */}
-        <Route path="/perfil" element={<PerfilUsuario />} />
+        {/* <Route path="/perfil" element={<PerfilUsuario />} /> */}
 
         {/* Rotas Operacionais (Controle de Frotas e Pneus) */}
         <Route path="/c" element={<CadastroUnificado />} />
