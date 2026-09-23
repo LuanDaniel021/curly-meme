@@ -1,7 +1,7 @@
 
 import styles from '../css/Dashboard.module.css';
 
-import PneusView from './outlet-components/PneusView';
+import PneusView from './outlet-components/Pneus';
 import RodizioView from './outlet-components/RodizioView';
 import EstoqueView from './outlet-components/EstoqueView';
 import InspecoesView from './outlet-components/VeiculosView/InspecoesView';
@@ -10,7 +10,7 @@ import DesgasteView from './outlet-components/DesgasteView';
 
 import UsuariosView from './outlet-components/Usuarios';
 
-import AxisBuilder from './outlet-components/AxisBuilder';
+import AxisBuilder from './outlet-components/TemplateView/AxisBuilder';
 import Modelo3dView from './outlet-components/VeiculosView/Modelo3dView';
 import VerificarView from './outlet-components/VerificarView';
 import Veiculos from './outlet-components/Veiculos';

@@ -1,5 +1,5 @@
 
-import { Header, Content } from './pneus/components/user';
+import { Header, Content } from './PneusView/user';
 
 import styles from '../../css/PneusView.module.css'
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import styles from '../../css/Usuarios.module.css'
 import Header from './UsuariosView/Header'
-import Content from './UsuariosView/Header'
+import Content from './UsuariosView/Content'
 
 import { api } from '../../../../../../service/api.js';
 
