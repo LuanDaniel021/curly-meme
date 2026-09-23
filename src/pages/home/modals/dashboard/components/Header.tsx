@@ -3,7 +3,11 @@ import styles from '../css/Dashboard.module.css';
 
 import { useState } from 'react';
 
-function Header() {
+interface HeaderProp {
+  setModalAtivo: () => void;
+}
+
+function Header( {setModalAtivo} : HeaderProp ) {
 
     const [menuAberto, setMenuAberto] = useState(false);
 
@@ -43,7 +47,12 @@ function Header() {
                   Meu perfil
                 </a>
 
-                onSelectModal('profile')
+                <button
+                  type='button'
+                  onClick={setModalAtivo}
+                >
+                  Meu perfil
+                </button>
 
                 <button type="button">
                   Sair
