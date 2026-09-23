@@ -1,10 +1,12 @@
 
 import { useEffect, useState } from 'react'
-import styles from '../../css/UsuariosView.module.css'
-import { Header, Content } from './usuarios/components/user.jsx'
-import { api } from '../../../../../../service/api';
+import styles from '../../css/Usuarios.module.css'
+import Header from './UsuariosView/Header'
+import Content from './UsuariosView/Header'
 
-// 1. Dados mockados para exemplo
+import { api } from '../../../../../../service/api.js';
+
+import type { MockUser } from './UsuariosView/TableWrapper.js';
 
 // interface Usuario {
 //   id: string;
@@ -13,16 +15,6 @@ import { api } from '../../../../../../service/api';
 //   role: string;
 //   dataCriacao: string;
 // }
-
-interface MockUser {
-  id: string
-  nome: string
-  email: string
-  iniciais: string
-  role: string
-  dataCriacao: string
-}
-
 
 function UsuariosView() {
 

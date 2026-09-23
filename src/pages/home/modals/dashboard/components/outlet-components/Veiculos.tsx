@@ -1,7 +1,7 @@
 
 import styles from '../../css/Veiculos.module.css';
 
-import Modelo3dView from "./Modelo3dView";
+import Modelo3dView from "./VeiculosView/Modelo3dView";
 
 function Header() {
   return (
@@ -23,7 +23,6 @@ function Header() {
     </header>
   );
 }
-
 
 function Render() {
     return (

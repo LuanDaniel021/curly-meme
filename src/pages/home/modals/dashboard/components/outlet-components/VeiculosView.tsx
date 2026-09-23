@@ -1,7 +1,7 @@
 
 import styles from '../../css/UsuariosView.module.css';
 
-import {Header,Content} from "./veiculos/veiculos";
+import {Header,Content} from "./VeiculosView/veiculos";
 
 function VeiculosView() {
   return (

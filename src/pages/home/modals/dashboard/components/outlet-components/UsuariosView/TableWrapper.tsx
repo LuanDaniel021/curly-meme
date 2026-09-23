@@ -1,39 +1,13 @@
 
-import styles from '../../../../css/UsuariosView.module.css'
+import styles from '../../../css/Usuarios.module.css'
 
-export function Header() {
-  return (
-    <header className={styles['header']}>
-      <div>
-        <h1 className={styles['title']}>Gestão de Usuários</h1>
-        <p className={styles['subtitle']}>Gerencie permissões, perfis e acessos do sistema.</p>
-      </div>
-
-      <button className={styles['btn-create']}>
-        <span>➕</span> Criar Usuário
-      </button>
-    </header>
-  )
-}
-
-export function Card({ titulo, valor, icon }) {
-  return (
-    <div className={styles['card']}>
-      <span className={styles['card-title']}>{titulo}</span>
-      <span className={styles['card-value']}>{valor}</span>
-      {icon && <span className={styles['card-icon']}>{icon}</span>}
-    </div>
-  )
-}
-
-export function Cards({ total = 0, ativos = 0, inativos = 0 }) {
-  return (
-    <div className={styles['cards-grid']}>
-      <Card titulo="Total de Usuários" valor={total} />
-      <Card titulo="Ativos" valor={ativos} />
-      <Card titulo="Inativos" valor={inativos} />
-    </div>
-  )
+export interface MockUser {
+  id: string
+  nome: string
+  email: string
+  iniciais: string
+  role: string
+  dataCriacao: string
 }
 
 export function THead() {
@@ -95,7 +69,7 @@ export function TBody({ users = [] }) {
   )
 }
 
-export function TableWrapper({ users = [] }) {
+function TableWrapper({ users = [] }) {
   const totalUsers = users.length;
 
   return (
@@ -122,11 +96,4 @@ export function TableWrapper({ users = [] }) {
   )
 }
 
-export function Content({ users = [] }) {
-  return (
-    <div className={styles['content']}>
-      <Cards total={users.length} ativos={users.length} inativos={0} />
-      <TableWrapper users={users} />
-    </div>
-  )
-}
+export default TableWrapper;
