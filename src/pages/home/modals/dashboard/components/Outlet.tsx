@@ -12,7 +12,7 @@ import DesgasteView from './outlet-components/DesgasteView';
 import UsuariosView from './outlet-components/UsuariosView';
 
 import TemplatesView from './outlet-components/TemplatesView';
-import Modelo3dView from './outlet-components/modelo3d/Modelo3dView';
+import Modelo3dView from './outlet-components/Modelo3dView';
 
 function OutletView() {
     return (
