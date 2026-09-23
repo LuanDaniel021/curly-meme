@@ -41,9 +41,7 @@ function Dashboard() {
 
       <div className={styles['dashboard-body']}>
 
-        <Header 
-          onSelectModal={onSelectModal}
-        />
+        <Header />
 
         <Outlet activeTab={activeTab} />
 

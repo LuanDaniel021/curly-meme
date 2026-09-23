@@ -3,11 +3,7 @@ import styles from '../css/Dashboard.module.css';
 
 import { useState } from 'react';
 
-interface HeaderProps {
-  onSelectModal: (tab: string) => void;
-}
-
-function Header( { onSelectModal } : HeaderProps ) {
+function Header() {
 
     const [menuAberto, setMenuAberto] = useState(false);
 
@@ -42,17 +38,10 @@ function Header( { onSelectModal } : HeaderProps ) {
 
             {menuAberto && (
               <div className={styles['profile-menu']}>
-
-                <button
-                  type="button"
-                  className={styles['profile-btn']}
-                  onClick={() => onSelectModal('profile')}
-                  aria-expanded={menuAberto}
-                >Meu perfil</button>
                 
-                {/* <a href="/perfil">
+                <a href="/perfil">
                   Meu perfil
-                </a> */}
+                </a>
 
                 onSelectModal('profile')
 
