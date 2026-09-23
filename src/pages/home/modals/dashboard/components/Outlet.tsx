@@ -1,16 +1,18 @@
 
 import styles from '../css/Dashboard.module.css';
+import PneuCadastro from './outlet-components/PneusView/cadastro/PneuCadastro';
 
-import PneusView from './outlet-components/Pneus';
 
-import ManutencoesView from './outlet-components/Manutencoes';
-import DesgasteView from './outlet-components/DesgasteView';
+import Pneus from './outlet-components/Pneus';
 
-import UsuariosView from './outlet-components/Usuarios';
+import Manutencoes from './outlet-components/Manutencoes';
+import Desgaste from './outlet-components/PneusView/DesgasteView';
 
-import AxisBuilder from './outlet-components/TemplateView/AxisBuilder';
-import VerificarView from './outlet-components/VeiculosView/VerificarView';
+import Usuarios from './outlet-components/Usuarios';
+
+import AxisBuilder from './outlet-components/TemplateView/AxisBuilder';import VerificarView from './outlet-components/VeiculosView/VerificarView';
 import Veiculos, { Veiculos3dView } from './outlet-components/Veiculos';
+import VeiculosCadastro from './outlet-components/VeiculosView/cadastro/VeiculoCadastro';
 
 function OutletView() {
     return (
@@ -154,16 +156,28 @@ function Outlet({ activeTab } : {activeTab:string})
 {
   const handler = (tab: string) => {
     switch (tab) {
-      case 'veiculo-3d-geral': return <Veiculos3dView />;
-      case 'veiculo-3d-pneus': return <VerificarView />;
-      case 'veiculo'    : return <Veiculos />;
-      case 'pneu'       : return <PneusView />;
-      case 'pneu-analise': return <DesgasteView />;
-      case 'manutencao' : return <ManutencoesView />;
-      case 'desgaste'   : return <DesgasteView />;
-      case 'usuarios'   : return <UsuariosView />;
-      case 'templates-criar'  : return <AxisBuilder />
-      default           : return <OutletView />
+        case 'veiculo-registrar': return <VeiculoCadastro />; 
+        case 'veiculo-3d-geral': return <Veiculos3dView />;
+        case 'veiculo-verificar': return <VerificarView />;
+        case 'veiculo'    : return <Veiculos />;
+
+        case 'pneu-registrar': return <PneuCadastro />; 
+        case 'pneu-medicao': return <VerificarView />;      
+        case 'pneu'       : return <Pneus />;
+      
+        case 'pneu-analise': return <DesgasteView />;
+        case 'desgaste'   : return <DesgasteView />;
+
+        case 'templates-registrar'  : return <AxisBuilder />;    
+        case 'templates'  : return <AxisBuilder />;
+      
+        case 'manutencao-preventiva' : return <Manutencoes />;
+        case 'manutencao-corretiva' : return <Manutencoes />;          
+        case 'manutencao' : return <Manutencoes />
+            
+        case 'usuarios'   : return <Usuarios />;
+            
+        default           : return <OutletView />;
     }
   }
   return (

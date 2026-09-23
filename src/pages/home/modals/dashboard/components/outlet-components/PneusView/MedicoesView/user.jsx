@@ -1,4 +1,4 @@
-import styles from '../../../css/MedicoesView.module.css'
+import styles from '../../../../css/MedicoesView.module.css'
 
 export function Header() {
   return (

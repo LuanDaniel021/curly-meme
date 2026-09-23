@@ -1,4 +1,4 @@
-import styles from '../../../css/PneusView.module.css'
+import styles from '../../../css/Pneus.module.css'
 
 export function Header() {
   return (

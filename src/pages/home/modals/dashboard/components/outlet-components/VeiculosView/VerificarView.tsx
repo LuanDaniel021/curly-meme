@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../../../css/InspecoesView.module.css'
+import styles from '../../../css/Verificar.module.css'
 
 // ============================================================================
 // DADOS MOCKADOS

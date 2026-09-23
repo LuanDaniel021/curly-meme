@@ -9,9 +9,9 @@ interface SidebarProps {
 }
 
 const OPCOES_VEICULO = [
-  { id: 'veiculo-3d-geral', label: 'Visão Geral 3D' },
-  { id: 'veiculo-3d-geral', label: 'Visão Geral 3D' },
-  { id: 'veiculo-3d-pneus', label: 'Verificar Pneus' },
+  { id: 'veiculo-registrar', label: 'Registrar Veiculo' },
+  { id: 'veiculo-3d-geral',  label: 'Visão Geral 3D' },
+  { id: 'veiculo-verificar', label: 'Verificar Pneus' },
 ];
 
 const OPCOES_PNEU = [
@@ -19,7 +19,7 @@ const OPCOES_PNEU = [
 ];
 
 const OPCOES_TEMPLATES = [
-  { id: 'templates-criar', label: 'Novo Template' },
+  { id: 'templates-registrar', label: 'Novo Template' },
 ];
 
 const OPCOES_MANUTENCAO = [

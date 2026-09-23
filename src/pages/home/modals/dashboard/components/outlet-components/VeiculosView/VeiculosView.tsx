@@ -1,5 +1,5 @@
 
-import styles from '../../css/UsuariosView.module.css';
+import styles from '../../css/VeiculosView.module.css';
 
 import {Header,Content} from "./veiculos";
 

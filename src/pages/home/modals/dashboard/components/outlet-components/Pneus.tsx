@@ -1,7 +1,7 @@
 
 import { Header, Content } from './PneusView/user';
 
-import styles from '../../css/PneusView.module.css'
+import styles from '../../css/Pneus.module.css'
 
 function PneusView()
 {

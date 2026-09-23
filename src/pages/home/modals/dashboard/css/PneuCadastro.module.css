@@ -10,8 +10,6 @@
     --text-title: #f8fafc;
     --text-main: #94a3b8;
     --text-muted: #64748b;
-    --success: #10b981;
-    --warning: #f59e0b;
 }
 
 .body-countainer * {
@@ -30,7 +28,7 @@
 }
 
 .container {
-    max-width: 800px;
+    max-width: 650px;
     width: 100%;
 }
 
@@ -39,7 +37,6 @@
     border-radius: 8px;
     padding: 24px;
     border: 1px solid var(--card-border);
-    margin-bottom: 20px;
 }
 
 .card-header {
@@ -65,7 +62,7 @@ h2 {
     color: var(--primary-blue);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin: 20px 0 16px 0;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -111,70 +108,6 @@ input:focus, select:focus, textarea:focus {
 @media (max-width: 600px) {
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
 }
-
-/* Resumo do Almoxarifado */
-.stock-summary {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.summary-box {
-    background-color: var(--input-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 12px;
-    text-align: center;
-}
-
-.summary-box .count {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-title);
-}
-
-.summary-box .label {
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-top: 2px;
-}
-
-/* Tabela de Pneus em Estoque */
-.stock-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-}
-
-.stock-table th {
-    text-align: left;
-    color: var(--text-muted);
-    padding: 8px;
-    border-bottom: 1px solid var(--card-border);
-    font-size: 10px;
-    text-transform: uppercase;
-}
-
-.stock-table td {
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--input-bg);
-    color: var(--text-title);
-}
-
-.badge {
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.badge-new { background-color: rgba(16, 185, 129, 0.2); color: var(--success); }
-.badge-recap { background-color: rgba(56, 189, 248, 0.2); color: var(--primary-blue); }
-.badge-used { background-color: rgba(245, 158, 11, 0.2); color: var(--warning); }
 
 .btn-submit {
     background-color: var(--primary-blue);
