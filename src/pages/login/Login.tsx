@@ -31,7 +31,7 @@ function Login() {
       localStorage.setItem('token', response.session.access_token);
       
       console.log('Login efetuado com sucesso:', response.data);
-      navigate('/dashboard');
+      navigate('/home');
     } catch (error) {
       console.error('Erro ao fazer login:', error);
       alert('Erro ao fazer login. Verifique seu e-mail e senha.');
