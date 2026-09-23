@@ -1,7 +1,7 @@
 
 import styles from '../../../css/Usuarios.module.css'
 
-function Header() {
+function Header({ onCreate }: { onCreate: () => void }) {
   return (
     <header className={styles['header']}>
       <div>
@@ -9,7 +9,7 @@ function Header() {
         <p className={styles['subtitle']}>Gerencie permissões, perfis e acessos do sistema.</p>
       </div>
 
-      <button className={styles['btn-create']}>
+      <button type="button" className={styles['btn-create']} onClick={onCreate}>
         <span>➕</span> Criar Usuário
       </button>
     </header>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../service/api';
+import { api, getTokenFromResponse } from '../../service/api';
 
 import styles from './Login.module.css';
 
@@ -23,45 +23,46 @@ function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    try {
-      // Rota corrigida conforme o Swagger/Documentação da API
-      const response = await api.post('/users/singin', { email, senha });
 
-      localStorage.setItem('token', response.session.access_token);
-      
-      console.log('Login efetuado com sucesso:', response.data);
+    try {
+      const response = await api.auth.login({ email, senha });
+      const token = getTokenFromResponse(response);
+
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+
+      console.log('Login efetuado com sucesso:', response);
       navigate('/home');
     } catch (error) {
       console.error('Erro ao fazer login:', error);
-      alert('Erro ao fazer login. Verifique seu e-mail e senha.');
+      alert(error instanceof Error ? error.message : 'Erro ao fazer login. Verifique seu e-mail e senha.');
     }
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (senhaReg !== confirmaSenhaReg) {
       alert('As senhas não coincidem!');
       return;
     }
 
     try {
-      // Enviando os dados para a rota de cadastro correta
-      const response = await api.post('/users/singup', {
+      const response = await api.auth.register({
         nome: nomeReg,
         email: emailReg,
         senha: senhaReg,
+        perfil: perfilReg,
+        role: perfilReg,
       });
 
-      console.log('Cadastro efetuado com sucesso:', response.data);
+      console.log('Cadastro efetuado com sucesso:', response);
       alert('Conta criada com sucesso! Faça login para continuar.');
-      
-      // Muda automaticamente para a aba de login após cadastrar
       setAbaAtiva('login');
     } catch (error) {
       console.error('Erro ao cadastrar:', error);
-      alert('Erro ao criar conta. Verifique os dados informados.');
+      alert(error instanceof Error ? error.message : 'Erro ao criar conta. Verifique os dados informados.');
     }
   };
 

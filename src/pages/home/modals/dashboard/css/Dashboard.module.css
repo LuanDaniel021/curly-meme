@@ -298,11 +298,15 @@
 }
 
 .quick-action {
+    width: 100%;
+    background: transparent;
     padding: 13px 15px;
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text);
     text-decoration: none;
+    text-align: left;
+    font-family: inherit;
     font-size: 14px;
     transition: border-color 0.2s, background 0.2s;
 }

@@ -9,17 +9,19 @@ interface SidebarProps {
 }
 
 const OPCOES_VEICULO = [
-  { id: 'veiculo-registrar', label: 'Registrar Veiculo' },
-  { id: 'veiculo-3d-geral',  label: 'Visão Geral 3D' },
-  { id: 'veiculo-verificar', label: 'Verificar Pneus' },
+  { id: 'veiculo-registrar', label: 'Registrar veículo' },
+  { id: 'veiculo-3d-geral',  label: 'Visualizar veículo em 3D' },
+  { id: 'veiculo-verificar', label: 'Gerenciar pneus do veículo' },
 ];
 
 const OPCOES_PNEU = [
-  { id: 'desgaste', label: 'Desgaste entre medições' },
+  { id: 'pneu-registrar', label: 'Registrar pneu' },
+  { id: 'pneu-medicoes', label: 'Gerenciar medições' },
+  { id: 'desgaste', label: 'Calcular desgaste' },
 ];
 
 const OPCOES_TEMPLATES = [
-  { id: 'templates-registrar', label: 'Novo Template' },
+  { id: 'templates-registrar', label: 'Gerenciar templates' },
 ];
 
 const OPCOES_MANUTENCAO = [

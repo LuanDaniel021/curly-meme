@@ -5,34 +5,28 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Outlet from './components/Outlet';
 
-import { useEffect, useState } from 'react';
-
-import { api } from '../../../../service/api';
+import { useState } from 'react';
+import type { UsuarioAtual } from '../../Home';
 
 interface DashboardPops {
-  setModalAtivo: () => void
+  setModalAtivo: () => void;
+  usuario: UsuarioAtual;
 }
 
-function Dashboard( {setModalAtivo} : DashboardPops ) {
+function Dashboard({ setModalAtivo, usuario }: DashboardPops) {
 
   const [activeTab, setActiveTab] = useState('home');
+  const [selectedTireId, setSelectedTireId] = useState<string>();
+  const [selectedTirePosition, setSelectedTirePosition] = useState<string>();
+  const [selectedVehiclePlate, setSelectedVehiclePlate] = useState<string>();
+  const isAdmin = usuario.role.toLowerCase() !== 'user';
 
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(
-    () => {
-      const fetchUser = async () => {
-        try {
-          const data = await api.get('users/info')
-          setIsAdmin(!(data.role === "user"));
-        }
-        catch (error) {
-          console.error('Erro ao obter informacoes:', error);
-        }
-      };
-
-    fetchUser();
-  }, []);
+  const selectTab = (tab: string, tireId?: string, position?: string, plate?: string) => {
+    if (tireId !== undefined) setSelectedTireId(tireId || undefined);
+    if (position) setSelectedTirePosition(position);
+    if (plate) setSelectedVehiclePlate(plate);
+    setActiveTab(tab);
+  };
 
   return (
     <div className={styles['dashboard']}>
@@ -40,14 +34,14 @@ function Dashboard( {setModalAtivo} : DashboardPops ) {
       <Sidebar
         isAdmin={isAdmin}
         activeTab={activeTab} 
-        onSelectTab={setActiveTab}
+        onSelectTab={selectTab}
       />
 
       <div className={styles['dashboard-body']}>
 
-        <Header setModalAtivo={setModalAtivo}/>
+        <Header usuario={usuario} setModalAtivo={setModalAtivo}/>
 
-        <Outlet activeTab={activeTab} />
+        <Outlet activeTab={activeTab} selectedTireId={selectedTireId} selectedTirePosition={selectedTirePosition} selectedVehiclePlate={selectedVehiclePlate} onSelectTab={selectTab} />
 
       </div>
 

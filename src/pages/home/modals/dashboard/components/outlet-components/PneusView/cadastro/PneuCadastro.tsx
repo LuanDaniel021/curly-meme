@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styles from '../../../PneuCadastro.module.css';
+import { api } from '../../../../../../../../service/api';
+import styles from '../../../../css/PneuCadastro.module.css';
 
 function PneuCadastro() {
   // Estados para os campos do formulário
@@ -15,23 +16,31 @@ function PneuCadastro() {
   const [valorCompra, setValorCompra] = useState('');
   const [observacoes, setObservacoes] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const dadosFormulario = {
-      fogo,
-      serie,
-      marca,
-      medida,
-      statusVida,
-      statusPneu,
-      dot,
-      sulcoInicial,
-      pressaoInicial,
-      valorCompra,
-      observacoes
+      fogo: fogo.trim(),
+      serie: serie.trim(),
+      marca: marca.trim(),
+      medida: medida.trim(),
+      status_vida: statusVida,
+      status_pneu: statusPneu,
+      dot: dot.trim(),
+      sulco_inicial: sulcoInicial.trim(),
+      pressao_inicial: pressaoInicial.trim(),
+      valor_compra: valorCompra.trim(),
+      observacoes: observacoes.trim(),
     };
-    console.log('Dados do Pneu:', dadosFormulario);
-    // Aqui você faria o envio para sua API
+
+    try {
+      const response = await api.post('/pneus', dadosFormulario);
+      console.log('Dados do Pneu enviados com sucesso:', response);
+      alert('Pneu cadastrado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao cadastrar pneu:', error);
+      alert(error instanceof Error ? error.message : 'Erro ao cadastrar pneu. Verifique os dados e tente novamente.');
+    }
   };
 
   return (

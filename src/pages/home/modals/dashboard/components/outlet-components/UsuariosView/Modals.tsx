@@ -4,11 +4,11 @@ import styles from '../../../css/Usuarios.module.css'
 import { type FormEvent } from 'react';
 
 export interface Usuario {
-  id: number;
+  id: number | string;
   nome: string;
   email: string;
   role: string;
-  status: string;
+  status?: string;
   dataCriacao: string;
   iniciais: string;
 }

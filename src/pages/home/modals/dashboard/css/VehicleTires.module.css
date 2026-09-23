@@ -1,0 +1,286 @@
+.container {
+  width: 100%;
+  max-width: 1180px;
+  padding: 8px;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 6px;
+  color: var(--text-h);
+  font-size: 28px;
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.primaryButton,
+.secondaryButton,
+.removeButton {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.primaryButton {
+  white-space: nowrap;
+  padding: 11px 16px;
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+}
+
+.primaryButton:hover {
+  background: var(--action-hover);
+}
+
+.secondaryButton,
+.removeButton {
+  padding: 9px 12px;
+  color: var(--text);
+  background: transparent;
+}
+
+.removeButton {
+  color: #f75a68;
+}
+
+.secondaryButton:hover,
+.removeButton:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.4fr);
+  gap: 18px;
+}
+
+.panel {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.panelTitle {
+  color: var(--text-h);
+  font-size: 17px;
+}
+
+.search,
+.select {
+  width: 100%;
+  padding: 10px 11px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-h);
+  background: var(--input-bg);
+  font: inherit;
+  font-size: 13px;
+}
+
+.search {
+  margin-bottom: 12px;
+}
+
+.search:focus,
+.select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.vehicleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 470px;
+  overflow-y: auto;
+}
+
+.vehicleButton {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.vehicleButton:hover,
+.vehicleSelected {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.vehicleName {
+  display: block;
+  color: var(--text-h);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.vehicleMeta {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+.statLabel {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.statValue {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-h);
+  font-size: 20px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 140px auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 13px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.primaryText {
+  display: block;
+  color: var(--text-h);
+  font-weight: 700;
+}
+
+.secondaryText {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.empty {
+  padding: 34px 10px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.error {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(247, 90, 104, 0.35);
+  border-radius: 6px;
+  color: #f75a68;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+
+  .stats,
+  .form {
+    grid-template-columns: 1fr;
+  }
+}

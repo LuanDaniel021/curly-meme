@@ -1,20 +1,87 @@
 
 import styles from '../css/Dashboard.module.css';
+import { useEffect, useState } from 'react';
+import { api } from '../../../../../service/api';
 import PneuCadastro from './outlet-components/PneusView/cadastro/PneuCadastro';
+import PneuMeasurementsManagement from './outlet-components/PneuMeasurementsManagement';
 
 
 import Pneus from './outlet-components/Pneus';
 
 import Manutencoes from './outlet-components/Manutencoes';
-import Desgaste from './outlet-components/PneusView/DesgasteView';
+import DesgasteView from './outlet-components/PneusView/DesgasteView';
 
 import Usuarios from './outlet-components/Usuarios';
 
-import AxisBuilder from './outlet-components/TemplateView/AxisBuilder';import VerificarView from './outlet-components/VeiculosView/VerificarView';
+import TemplateManagement from './outlet-components/TemplateView/TemplateManagement';
+import VerificarView from './outlet-components/VeiculosView/VerificarView';
+import VehicleTiresManagement from './outlet-components/VehicleTiresManagement';
 import Veiculos, { Veiculos3dView } from './outlet-components/Veiculos';
-import VeiculosCadastro from './outlet-components/VeiculosView/cadastro/VeiculoCadastro';
+import VeiculoCadastro from './outlet-components/VeiculosView/cadastro/VeiculoCadastro';
 
-function OutletView() {
+interface DashboardMetrics {
+  veiculos: number;
+  pneus: number;
+  inspecoes: number;
+  manutencoes: number;
+}
+
+const metricasIniciais: DashboardMetrics = {
+  veiculos: 0,
+  pneus: 0,
+  inspecoes: 0,
+  manutencoes: 0,
+};
+
+function contarRegistros(response: unknown): number {
+  if (Array.isArray(response)) return response.length;
+  if (!response || typeof response !== 'object') return 0;
+
+  const dados = 'data' in response ? response.data : response;
+  if (Array.isArray(dados)) return dados.length;
+  if (!dados || typeof dados !== 'object') return 0;
+
+  const objeto = dados as Record<string, unknown>;
+  for (const chave of ['total', 'count', 'totalCount']) {
+    if (typeof objeto[chave] === 'number') return objeto[chave];
+  }
+
+  for (const chave of ['items', 'results', 'rows', 'veiculos', 'pneus', 'inspecoes', 'manutencoes']) {
+    if (Array.isArray(objeto[chave])) return objeto[chave].length;
+  }
+
+  return 0;
+}
+
+function useDashboardMetrics(): DashboardMetrics {
+  const [metricas, setMetricas] = useState(metricasIniciais);
+
+  useEffect(() => {
+    const carregarMetricas = async () => {
+      const [veiculos, pneus, inspecoes, manutencoes] = await Promise.allSettled([
+        api.get('veiculos'),
+        api.get('pneus'),
+        api.get('inspecoes'),
+        api.get('manutencoes'),
+      ]);
+
+      setMetricas({
+        veiculos: veiculos.status === 'fulfilled' ? contarRegistros(veiculos.value) : 0,
+        pneus: pneus.status === 'fulfilled' ? contarRegistros(pneus.value) : 0,
+        inspecoes: inspecoes.status === 'fulfilled' ? contarRegistros(inspecoes.value) : 0,
+        manutencoes: manutencoes.status === 'fulfilled' ? contarRegistros(manutencoes.value) : 0,
+      });
+    };
+
+    carregarMetricas();
+  }, []);
+
+  return metricas;
+}
+
+function OutletView({ onSelectTab }: { onSelectTab: (tab: string) => void }) {
+    const metricas = useDashboardMetrics();
+
     return (
       <div className={styles['container']}>
         <section className={styles['welcome-section']}>
@@ -32,7 +99,7 @@ function OutletView() {
             </span>
 
             <strong className={styles['summary-value']}>
-              0
+              {metricas.veiculos}
             </strong>
 
             <span className={styles['summary-description']}>
@@ -46,7 +113,7 @@ function OutletView() {
             </span>
 
             <strong className={styles['summary-value']}>
-              0
+              {metricas.pneus}
             </strong>
 
             <span className={styles['summary-description']}>
@@ -60,7 +127,7 @@ function OutletView() {
             </span>
 
             <strong className={styles['summary-value']}>
-              0
+              {metricas.inspecoes}
             </strong>
 
             <span className={styles['summary-description']}>
@@ -74,7 +141,7 @@ function OutletView() {
             </span>
 
             <strong className={styles['summary-value']}>
-              0
+              {metricas.manutencoes}
             </strong>
 
             <span className={styles['summary-description']}>
@@ -116,33 +183,37 @@ function OutletView() {
 
             <div className={styles['quick-actions']}>
 
-              <a
-                href="/caminhao"
+              <button
+                type="button"
                 className={styles['quick-action']}
+                onClick={() => onSelectTab('veiculo-registrar')}
               >
                 Cadastrar caminhão
-              </a>
+              </button>
 
-              <a
-                href="/pneu"
+              <button
+                type="button"
                 className={styles['quick-action']}
+                onClick={() => onSelectTab('pneu-registrar')}
               >
                 Cadastrar pneu
-              </a>
+              </button>
 
-              <a
-                href="/inspecao"
+              <button
+                type="button"
                 className={styles['quick-action']}
+                onClick={() => onSelectTab('veiculo-verificar')}
               >
-                Nova inspeção
-              </a>
+                Gerenciar pneus do veículo
+              </button>
 
-              <a
-                href="/manutencao"
+              <button
+                type="button"
                 className={styles['quick-action']}
+                onClick={() => onSelectTab('manutencao')}
               >
                 Registrar manutenção
-              </a>
+              </button>
 
             </div>
           </article>
@@ -152,32 +223,34 @@ function OutletView() {
     )
 }
 
-function Outlet({ activeTab } : {activeTab:string})
+function Outlet({ activeTab, selectedTireId, selectedTirePosition, selectedVehiclePlate, onSelectTab }: { activeTab: string; selectedTireId?: string; selectedTirePosition?: string; selectedVehiclePlate?: string; onSelectTab: (tab: string, tireId?: string, position?: string, plate?: string) => void })
 {
   const handler = (tab: string) => {
     switch (tab) {
         case 'veiculo-registrar': return <VeiculoCadastro />; 
-        case 'veiculo-3d-geral': return <Veiculos3dView />;
-        case 'veiculo-verificar': return <VerificarView />;
-        case 'veiculo'    : return <Veiculos />;
+        case 'veiculo-3d-geral': return <Veiculos3dView onSelectTire={(tireId, position, plate) => onSelectTab(tireId ? 'pneu-medicao' : 'veiculo-verificar', tireId || '', position, plate)} />;
+        case 'veiculo-verificar': return <VehicleTiresManagement initialPlate={selectedVehiclePlate} initialPosition={selectedTirePosition} onRegisterVehicle={() => onSelectTab('veiculo-registrar')} />;
+        case 'veiculo'    : return <Veiculos onRegister={() => onSelectTab('veiculo-registrar')} onDetails={(plate) => onSelectTab('veiculo-verificar', undefined, undefined, plate)} />;
 
         case 'pneu-registrar': return <PneuCadastro />; 
-        case 'pneu-medicao': return <VerificarView />;      
-        case 'pneu'       : return <Pneus />;
+        case 'pneu-medicoes': return <PneuMeasurementsManagement />;
+        case 'pneu-medicao': return <VerificarView selectedTireId={selectedTireId} selectedTirePosition={selectedTirePosition} selectedVehiclePlate={selectedVehiclePlate} />;
+        case 'pneu'       : return <Pneus onRegister={() => onSelectTab('pneu-registrar')} onDetails={(tireId) => onSelectTab('pneu-medicao', tireId)} />;
       
         case 'pneu-analise': return <DesgasteView />;
         case 'desgaste'   : return <DesgasteView />;
 
-        case 'templates-registrar'  : return <AxisBuilder />;    
-        case 'templates'  : return <AxisBuilder />;
+        case 'templates-registrar'  : return <TemplateManagement />;
+        case 'templates'  : return <TemplateManagement />;
       
-        case 'manutencao-preventiva' : return <Manutencoes />;
-        case 'manutencao-corretiva' : return <Manutencoes />;          
-        case 'manutencao' : return <Manutencoes />
+        case 'manutencao-preventiva' : return <Manutencoes initialMode="preventiva" />;
+        case 'manutencao-corretiva' : return <Manutencoes initialMode="corretiva" />;
+        case 'manutencao-agendamentos' : return <Manutencoes initialMode="agendamentos" />;
+        case 'manutencao' : return <Manutencoes initialMode="preventiva" />
             
         case 'usuarios'   : return <Usuarios />;
             
-        default           : return <OutletView />;
+        default           : return <OutletView onSelectTab={onSelectTab} />;
     }
   }
   return (

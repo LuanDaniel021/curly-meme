@@ -3,6 +3,7 @@ import styles from '../../css/UsuariosView.module.css';
 
 import { useEffect, useState, type FormEvent } from 'react';
 
+import { ModalCriar, ModalEditar, ModalExcluir } from './Modals';
 import { api } from '../../../../../../../service/api';
 
 // ==========================================

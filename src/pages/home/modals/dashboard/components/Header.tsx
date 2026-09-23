@@ -2,12 +2,14 @@
 import styles from '../css/Dashboard.module.css';
 
 import { useState } from 'react';
+import type { UsuarioAtual } from '../../../Home';
 
 interface HeaderProp {
   setModalAtivo: () => void;
+  usuario: UsuarioAtual;
 }
 
-function Header( {setModalAtivo} : HeaderProp ) {
+function Header({ setModalAtivo, usuario }: HeaderProp) {
 
     const [menuAberto, setMenuAberto] = useState(false);
 
@@ -28,11 +30,11 @@ function Header( {setModalAtivo} : HeaderProp ) {
               aria-expanded={menuAberto}
             >
               <span className={styles['profile-avatar']}>
-                U
+                {usuario.nome.slice(0, 2).toUpperCase()}
               </span>
 
               <span className={styles['profile-name']}>
-                Usuário
+                {usuario.nome}
               </span>
 
               <span className={styles['profile-arrow']}>

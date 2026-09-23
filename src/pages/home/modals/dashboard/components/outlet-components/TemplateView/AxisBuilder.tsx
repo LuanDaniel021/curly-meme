@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { api } from '../../../../../../../service/api';
 
 import '../../../css/Templates.module.css';
 
@@ -22,6 +23,7 @@ type HeaderProps = {
   onAddEixo: () => void;
   onRemoveEixo: (index: number) => void;
   onSubmit: (e: FormEvent) => void;
+  salvando: boolean;
 };
 
 type ContentProps = {
@@ -40,6 +42,7 @@ function Header({
   onAddEixo,
   onRemoveEixo,
   onSubmit,
+  salvando,
 }: HeaderProps) {
   const getBadgeClass = (funcao: string) => {
     const normalized = funcao
@@ -123,8 +126,8 @@ function Header({
           ))}
         </div>
 
-        <button type="submit" className="btn-submit">
-          Salvar Template
+        <button type="submit" className="btn-submit" disabled={salvando}>
+          {salvando ? "Salvando..." : "Salvar Template"}
         </button>
       </form>
     </div>
@@ -184,6 +187,7 @@ export default function AxisBuilder() {
   const [tipoRodado, setTipoRodado] = useState<"simples" | "duplo">("simples");
   const [funcaoEixo, setFuncaoEixo] = useState<"Direcional" | "Tração" | "Livre">("Direcional");
   const [eixos, setEixos] = useState<EixoItem[]>([]);
+  const [salvando, setSalvando] = useState(false);
 
   const gerarEstruturaEixos = (
     lista: Omit<EixoItem, "eixo" | "visual" | "posicoes">[]
@@ -228,27 +232,32 @@ export default function AxisBuilder() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    if (!nomeTemplate.trim()) {
+      alert("Informe o nome do template.");
+      return;
+    }
+
+    if (eixos.length === 0) {
+      alert("Adicione pelo menos um eixo antes de salvar o template.");
+      return;
+    }
+
     const payload = {
-      nome_template: nomeTemplate,
+      nome_template: nomeTemplate.trim(),
       matriz_json: JSON.stringify(eixos),
     };
 
     try {
-      const response = await fetch("/salvar-template", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (response.ok) {
-        alert("Template salvo com sucesso!");
-      } else {
-        alert("Erro ao salvar template.");
-      }
+      setSalvando(true);
+      await api.post('/templates', payload);
+      alert("Template salvo com sucesso!");
+      setNomeTemplate("");
+      setEixos([]);
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
+      alert(error instanceof Error ? error.message : "Erro ao salvar template.");
+    } finally {
+      setSalvando(false);
     }
   };
 
@@ -265,6 +274,7 @@ export default function AxisBuilder() {
         onAddEixo={handleAddEixo}
         onRemoveEixo={handleRemoveEixo}
         onSubmit={handleSubmit}
+        salvando={salvando}
       />
 
       <Content eixos={eixos} />

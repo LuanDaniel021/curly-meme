@@ -31,11 +31,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 #root {
   width: 100%;
   min-width: 100%;
   min-height: 100svh;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -47,6 +53,27 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: var(--bg);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
 }
 
 h1,

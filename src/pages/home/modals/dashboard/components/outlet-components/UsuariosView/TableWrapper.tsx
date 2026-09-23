@@ -23,7 +23,7 @@ export function THead() {
   )
 }
 
-export function TBody({ users = [] }: { users?: MockUser[] }) {
+export function TBody({ users = [], onEdit, onDelete }: { users?: MockUser[]; onEdit: (user: MockUser) => void; onDelete: (user: MockUser) => void }) {
   if (users.length === 0) {
     return (
       <tbody>
@@ -55,10 +55,10 @@ export function TBody({ users = [] }: { users?: MockUser[] }) {
           <td className={styles['date-text']}>{user.dataCriacao}</td>
           <td>
             <div className={styles['actions-cell']}>
-              <button className={styles['btn-edit']} title="Editar Usuário">
+                <button type="button" className={styles['btn-edit']} title="Editar Usuário" onClick={() => onEdit(user)}>
                 ✏️ Editar
               </button>
-              <button className={styles['btn-delete']} title="Excluir Usuário">
+                <button type="button" className={styles['btn-delete']} title="Excluir Usuário" onClick={() => onDelete(user)}>
                 🗑️ Excluir
               </button>
             </div>
@@ -69,14 +69,14 @@ export function TBody({ users = [] }: { users?: MockUser[] }) {
   )
 }
 
-function TableWrapper({ users = [] }: { users?: MockUser[] }) {
+function TableWrapper({ users = [], onEdit, onDelete }: { users?: MockUser[]; onEdit: (user: MockUser) => void; onDelete: (user: MockUser) => void }) {
   const totalUsers = users.length;
 
   return (
     <div className={styles['table-wrapper']}>
       <table className={styles['table']}>
         <THead />
-        <TBody users={users} />
+        <TBody users={users} onEdit={onEdit} onDelete={onDelete} />
       </table>
 
       <footer className={styles['table-footer']}>

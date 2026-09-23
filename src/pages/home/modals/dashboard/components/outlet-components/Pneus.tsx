@@ -1,16 +1,8 @@
 
-import { Header, Content } from './PneusView/user';
+import PneuManagement from './PneuManagement';
 
-import styles from '../../css/Pneus.module.css'
-
-function PneusView()
-{
-    return (
-        <div className={styles['container']}>
-            <Header />
-            <Content />
-        </div>
-    )
+function PneusView({ onRegister, onDetails }: { onRegister: () => void; onDetails: (tireId: string) => void }) {
+    return <PneuManagement onRegister={onRegister} onDetails={onDetails} />;
 }
 
 export default PneusView;

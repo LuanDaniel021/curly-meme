@@ -2,12 +2,14 @@
 import styles from './css/Profile.module.css';
 
 import { useState } from 'react';
+import type { UsuarioAtual } from '../../Home';
 
 interface PerfilUsuarioProp {
-setModalAtivo: () => void
+  setModalAtivo: () => void;
+  usuario: UsuarioAtual;
 }
 
-function Header({setModalAtivo} : PerfilUsuarioProp) {
+function Header({ setModalAtivo }: Pick<PerfilUsuarioProp, 'setModalAtivo'>) {
   return (
     <header className={styles['profile-header']}>
       <button
@@ -25,7 +27,7 @@ function Banner() {
   return <div className={styles['cover-container']} aria-hidden="true" />
 }
 
-function Content() {
+function Content({ usuario }: { usuario: UsuarioAtual }) {
   
   const [activeTab, setActiveTab] = useState('atividades');
 
@@ -35,13 +37,13 @@ function Content() {
         {/* CARTÃO LATERAL DO PERFIL */}
         <aside className={styles['profile-card']}>
           <div className={styles['avatar-wrapper']}>
-            <div className={styles['profile-avatar']}>CE</div>
+            <div className={styles['profile-avatar']}>{usuario.nome.slice(0, 2).toUpperCase()}</div>
           </div>
 
           <div className={styles['user-details']}>
-            <h1 className={styles['fullname']}>CARLOS EDUARDO</h1>
-            <span className={styles['handle']}>@carlos.eduardo</span>
-            <span className={styles['user-role-badge']}>Supervisão de Logística</span>
+            <h1 className={styles['fullname']}>{usuario.nome}</h1>
+            <span className={styles['handle']}>{usuario.email || 'Usuário autenticado'}</span>
+            <span className={styles['user-role-badge']}>{usuario.role}</span>
           </div>
 
           <div className={styles['profile-actions']}>
@@ -116,7 +118,7 @@ function Content() {
 
 
 
-function PerfilUsuario( { setModalAtivo } : PerfilUsuarioProp ) {
+function PerfilUsuario({ setModalAtivo, usuario }: PerfilUsuarioProp) {
   return (
     <div className={styles['profile']}>
 
@@ -124,7 +126,7 @@ function PerfilUsuario( { setModalAtivo } : PerfilUsuarioProp ) {
 
       <Banner />
       
-      <Content />
+      <Content usuario={usuario} />
       
     </div>
   );

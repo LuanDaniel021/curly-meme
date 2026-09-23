@@ -4,14 +4,16 @@ import { Cards } from './Cards'
 import TableWrapper, { type MockUser } from './TableWrapper'
 
 interface PContent {
-  users: MockUser[] 
+  users: MockUser[];
+  onEdit: (user: MockUser) => void;
+  onDelete: (user: MockUser) => void;
 } 
 
-function Content({ users = [] }: PContent) {
+function Content({ users = [], onEdit, onDelete }: PContent) {
   return (
     <div className={styles['content']}>
       <Cards total={users.length} ativos={users.length} inativos={0} />
-      <TableWrapper users={users} />
+      <TableWrapper users={users} onEdit={onEdit} onDelete={onDelete} />
 
     </div>
   )
