@@ -1,15 +1,17 @@
 
-import styles from '../../css/Veiculos.module.css';
+import plateStyles from '../../css/Veiculos.module.css';
+import viewStyles from '../../css/VeiculosView.module.css';
 
-import Modelo3dView from "./VeiculosView/Modelo3dView";
+import { Content, Header } from './VeiculosView/veiculos';
+import Modelo3dView from './VeiculosView/Modelo3dView';
 
-function Header() {
+function PlateHeader() {
   return (
-    <header className={styles['header']}>
-      <div className={styles['plate-area']}>
-        <span className={styles['eyebrow']}>Placa do Veículo</span>
-        <div className={styles['plate']}>
-          <div className={styles['plate-header']}>
+    <section className={plateStyles['header']}>
+      <div className={plateStyles['plate-area']}>
+        <span className={plateStyles['eyebrow']}>Placa do Veículo</span>
+        <div className={plateStyles['plate']}>
+          <div className={plateStyles['plate-header']}>
             BR <span>•</span> BRASIL
           </div>
           <input
@@ -17,31 +19,31 @@ function Header() {
             placeholder="ABC1D23"
             maxLength={7}
           />
-          <span className={styles['plate-country']}>BR</span>
+          <span className={plateStyles['plate-country']}>BR</span>
         </div>
       </div>
-    </header>
+    </section>
   );
 }
 
-function Render() {
-    return (
-        <div className={styles['render']}>
-            <Modelo3dView />
-        </div>
-    )
+function Veiculos() {
+  return (
+    <div className={viewStyles['container']}>
+      <Header />
+      <Content veiculos={[]} />
+    </div>
+  );
 }
 
-function Veiculos() {
-    return (
-        <div className={styles['container']}>
-
-            <Header />
-
-            <Render />
-
-        </div>
-    )
+export function Veiculos3dView() {
+  return (
+    <div className={plateStyles['container']}>
+      <PlateHeader />
+      <div className={plateStyles['render']}>
+        <Modelo3dView />
+      </div>
+    </div>
+  );
 }
 
 export default Veiculos;

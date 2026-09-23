@@ -43,10 +43,6 @@ function Header( {setModalAtivo} : HeaderProp ) {
             {menuAberto && (
               <div className={styles['profile-menu']}>
                 
-                <a href="/perfil">
-                  Meu perfil
-                </a>
-
                 <button
                   type='button'
                   onClick={setModalAtivo}

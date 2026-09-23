@@ -1,4 +1,4 @@
-import styles from '../../../../css/VeiculosView.module.css'
+import styles from '../../../css/VeiculosView.module.css'
 
 export function Header() {
   return (

@@ -298,7 +298,7 @@ function Content({
 // COMPONENTE PRINCIPAL (VIEW)
 // ============================================================================
 
-function InspecoesView() {
+function VerificarView() {
   const [vehicleRecord] = useState(mockVehicleRecord)
   const [tire] = useState(mockTire)
   const [maintenance] = useState(mockMaintenance)
@@ -345,4 +345,4 @@ function InspecoesView() {
   )
 }
 
-export default InspecoesView
+export default VerificarView

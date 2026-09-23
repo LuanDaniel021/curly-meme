@@ -22,6 +22,33 @@
   flex-direction: column;
 }
 
+.profile-header {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--card-border);
+  background-color: var(--bg-main);
+}
+
+.back-button {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  color: var(--text-main);
+  padding: 9px 14px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.back-button:hover {
+  border-color: var(--primary-blue);
+  color: var(--text-title);
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
 /* CAPA */
 .cover-container {
   height: 180px;
@@ -197,4 +224,29 @@
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
+}
+
+@media (max-width: 820px) {
+  .profile-header {
+    padding: 0 20px;
+  }
+
+  .content-container {
+    grid-template-columns: 1fr;
+    padding: 0 20px 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .profile-tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab-item {
+    min-width: calc(50% - 4px);
+  }
+
+  .tab-panel {
+    padding: 16px;
+  }
 }

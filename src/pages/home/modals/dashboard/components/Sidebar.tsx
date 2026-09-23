@@ -11,13 +11,11 @@ interface SidebarProps {
 const OPCOES_VEICULO = [
   { id: 'veiculo-3d-geral', label: 'Visão Geral 3D' },
   { id: 'veiculo-3d-pneus', label: 'Verificar Pneus' },
-  { id: 'veiculo-3d-chassi', label: 'Inspeção do Chassi' },
 ];
 
 const OPCOES_PNEU = [
   { id: 'pneu-estoque', label: 'Estoque' },
-  { id: 'pneu-historico', label: 'Histórico de Trocas' },
-  { id: 'pneu-analise', label: 'Análise de Vida Útil' },
+  { id: 'desgaste', label: 'Desgaste entre medições' },
 ];
 
 const OPCOES_TEMPLATES = [
@@ -142,15 +140,6 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           )}
         </div>
 
-        <button
-          type="button"
-          className={getItemClassName('rodizio')}
-          onClick={() => onSelectTab('rodizio')}
-        >
-          <span>↻</span>
-          <span className={styles['nav-label']}>Rodízio</span>
-        </button>
-
         {/* Grupo Expansível: Templates */}
         <div className={styles['nav-group']}>
             
@@ -187,15 +176,6 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           )}
         </div>
 
-        <button
-          type="button"
-          className={getItemClassName('inspecao')}
-          onClick={() => onSelectTab('inspecao')}
-        >
-          <span>✓</span>
-          <span className={styles['nav-label']}>Inspeções</span>
-        </button>
-
         {/* Grupo Expansível: Manutenções */}
         <div className={styles['nav-group']}>
           <button
@@ -231,15 +211,6 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           )}
         </div>
 
-
-        <button
-          type="button"
-          className={getItemClassName('desgaste')}
-          onClick={() => onSelectTab('desgaste')}
-        >
-          <span>↘</span>
-          <span className={styles['nav-label']}>Desgaste</span>
-        </button>
       </nav>
 
         {isAdmin && (

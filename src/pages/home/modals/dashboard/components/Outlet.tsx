@@ -2,18 +2,15 @@
 import styles from '../css/Dashboard.module.css';
 
 import PneusView from './outlet-components/Pneus';
-import RodizioView from './outlet-components/RodizioView';
-import EstoqueView from './outlet-components/EstoqueView';
-import InspecoesView from './outlet-components/VeiculosView/InspecoesView';
+
 import ManutencoesView from './outlet-components/ManutencoesView';
 import DesgasteView from './outlet-components/DesgasteView';
 
 import UsuariosView from './outlet-components/Usuarios';
 
 import AxisBuilder from './outlet-components/TemplateView/AxisBuilder';
-import Modelo3dView from './outlet-components/VeiculosView/Modelo3dView';
-import VerificarView from './outlet-components/VerificarView';
-import Veiculos from './outlet-components/Veiculos';
+import VerificarView from './outlet-components/VeiculosView/VerificarView';
+import Veiculos, { Veiculos3dView } from './outlet-components/Veiculos';
 
 function OutletView() {
     return (
@@ -157,13 +154,11 @@ function Outlet({ activeTab } : {activeTab:string})
 {
   const handler = (tab: string) => {
     switch (tab) {
-      case 'veiculo-3d-geral'    : return <Modelo3dView />;
-      case 'veiculo-3d-pneus': return <VerificarView />
+      case 'veiculo-3d-geral': return <Veiculos3dView />;
+      case 'veiculo-3d-pneus': return <VerificarView />;
       case 'veiculo'    : return <Veiculos />;
       case 'pneu'       : return <PneusView />;
-      case 'rodizio'    : return <RodizioView />;
-      case 'estoque'    : return <EstoqueView />;
-      case 'inspecao'   : return <InspecoesView />;
+      case 'pneu-analise': return <DesgasteView />;
       case 'manutencao' : return <ManutencoesView />;
       case 'desgaste'   : return <DesgasteView />;
       case 'usuarios'   : return <UsuariosView />;

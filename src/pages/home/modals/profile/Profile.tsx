@@ -9,20 +9,20 @@ setModalAtivo: () => void
 
 function Header({setModalAtivo} : PerfilUsuarioProp) {
   return (
-    <div className={styles['']}>
+    <header className={styles['profile-header']}>
       <button
+        type="button"
+        className={styles['back-button']}
         onClick={setModalAtivo}
       >
-        Voltar
+        ← Voltar ao dashboard
       </button>
-    </div>
+    </header>
   )
 }
 
 function Banner() {
-  return (
-    <div className={styles['banner']}></div>
-  )
+  return <div className={styles['cover-container']} aria-hidden="true" />
 }
 
 function Content() {
@@ -30,7 +30,7 @@ function Content() {
   const [activeTab, setActiveTab] = useState('atividades');
 
   return (
-      <div className={styles['content']}>
+      <div className={styles['content-container']}>
 
         {/* CARTÃO LATERAL DO PERFIL */}
         <aside className={styles['profile-card']}>
