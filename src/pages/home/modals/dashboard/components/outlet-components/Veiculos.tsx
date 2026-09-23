@@ -5,17 +5,16 @@ import Modelo3dView from "./Modelo3dView";
 
 function Header() {
     return (
-        <div>
+        <header className={styles['header']}>
             TESTE
-        </div>
+        </header>
     )
 }
 
 function Render() {
     return (
-        <div>
-            TES<Modelo3dView />
-            TE
+        <div className={styles['render']}>
+            <Modelo3dView />
         </div>
     )
 }
@@ -24,9 +23,9 @@ function Veiculos() {
     return (
         <div className={styles['container']}>
 
-            
+            <Header />
 
-            
+            <Render />
 
         </div>
     )

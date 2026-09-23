@@ -17,7 +17,7 @@ import Veiculos from './outlet-components/Veiculos';
 
 function OutletView() {
     return (
-      <>
+      <div className={styles['container']}>
         <section className={styles['welcome-section']}>
           <h2>Olá, seja bem-vindo!</h2>
           <p>
@@ -149,7 +149,7 @@ function OutletView() {
           </article>
 
         </section>
-      </>
+      </div>
     )
 }
 
