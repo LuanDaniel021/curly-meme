@@ -12,6 +12,7 @@ import DesgasteView from './outlet-components/DesgasteView';
 import UsuariosView from './outlet-components/UsuariosView';
 
 import TemplatesView from './outlet-components/TemplatesView';
+import Modelo3dView from './outlet-components/modelo3d/Modelo3dView';
 
 function OutletView() {
     return (
@@ -155,6 +156,7 @@ function Outlet({ activeTab } : {activeTab:string})
 {
   const handler = (tab: string) => {
     switch (tab) {
+      case 'veiculo-3d-geral'    : return <Modelo3dView />;
       case 'veiculo'    : return <VeiculosView />;
       case 'pneu'       : return <PneusView />;
       case 'rodizio'    : return <RodizioView />;
@@ -163,8 +165,8 @@ function Outlet({ activeTab } : {activeTab:string})
       case 'manutencao' : return <ManutencoesView />;
       case 'desgaste'   : return <DesgasteView />;
       case 'usuarios'   : return <UsuariosView />;
-      case 'def'        : return <OutletView />
-      default           : return <TemplatesView />
+      case 'templates'  : return <TemplatesView />
+      default           : return <OutletView />
     }
   }
   return (

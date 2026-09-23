@@ -30,6 +30,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
 
   return (
     <aside className={styles['sidebar']}>
+      
       <div className={styles['sidebar-header']}>
         <h2>Gestão de Frotas</h2>
       </div>
