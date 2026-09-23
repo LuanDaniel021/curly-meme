@@ -1,7 +1,6 @@
 
 import styles from '../css/Dashboard.module.css';
 
-import VeiculosView  from './outlet-components/VeiculosView';
 import PneusView from './outlet-components/PneusView';
 import RodizioView from './outlet-components/RodizioView';
 import EstoqueView from './outlet-components/EstoqueView';
@@ -14,6 +13,7 @@ import UsuariosView from './outlet-components/UsuariosView';
 import AxisBuilder from './outlet-components/AxisBuilder';
 import Modelo3dView from './outlet-components/Modelo3dView';
 import VerificarView from './outlet-components/VerificarView';
+import Veiculos from './outlet-components/Veiculos';
 
 function OutletView() {
     return (
@@ -159,7 +159,7 @@ function Outlet({ activeTab } : {activeTab:string})
     switch (tab) {
       case 'veiculo-3d-geral'    : return <Modelo3dView />;
       case 'veiculo-3d-pneus': return <VerificarView />
-      case 'veiculo'    : return <VeiculosView />;
+      case 'veiculo'    : return <Veiculos />;
       case 'pneu'       : return <PneusView />;
       case 'rodizio'    : return <RodizioView />;
       case 'estoque'    : return <EstoqueView />;
