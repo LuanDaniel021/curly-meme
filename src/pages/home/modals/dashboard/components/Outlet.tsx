@@ -11,7 +11,7 @@ import DesgasteView from './outlet-components/DesgasteView';
 
 import UsuariosView from './outlet-components/UsuariosView';
 
-import TemplatesView from './outlet-components/TemplatesView';
+import AxisBuilder from './outlet-components/AxisBuilder';
 import Modelo3dView from './outlet-components/Modelo3dView';
 import VerificarView from './outlet-components/VerificarView';
 
@@ -167,7 +167,7 @@ function Outlet({ activeTab } : {activeTab:string})
       case 'manutencao' : return <ManutencoesView />;
       case 'desgaste'   : return <DesgasteView />;
       case 'usuarios'   : return <UsuariosView />;
-      case 'templates'  : return <TemplatesView />
+      case 'templates'  : return <AxisBuilder />
       default           : return <OutletView />
     }
   }

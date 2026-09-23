@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import styles from '../css/Dashboard.module.css';
 
@@ -33,40 +32,27 @@ const OPCOES_MANUTENCAO = [
 ];
 
 function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
-  
   const [isVeiculosOpen, setIsVeiculosOpen] = useState(false);
   const [isPneusOpen, setIsPneusOpen] = useState(false);
   const [isTemplatesOpen, setIsTemplatesOpen] = useState(false);
   const [isManutencaoOpen, setIsManutencaoOpen] = useState(false);
 
-  // O item de veículos fica destacado se ele mesmo ou alguma sub-aba estiver ativa
-  const isVeiculoActive = activeTab === 'veiculo' || OPCOES_VEICULO.some((opt) => opt.id === activeTab);
-  // const isVeiculoActive = OPCOES_VEICULO.some((opt) => opt.id === activeTab);
+  // Fica destacado apenas se alguma sub-aba pertencente ao grupo estiver ativa
+  const isVeiculoActive = OPCOES_VEICULO.some((opt) => opt.id === activeTab);
   const isPneuActive = OPCOES_PNEU.some((opt) => opt.id === activeTab);
   const isTemplatesActive = OPCOES_TEMPLATES.some((opt) => opt.id === activeTab);
   const isManutencaoActive = OPCOES_MANUTENCAO.some((opt) => opt.id === activeTab);
-    
-  const getItemClassName = (tabId: string) => `${styles['nav-item']} ${activeTab === tabId ? styles['active'] : ''}`;
 
-  const handleVeiculosClick = () => {
-    onSelectTab('veiculo');
-    setIsVeiculosOpen((prev) => !prev);
-  };
-
-    const handleToggleClick = (tab:string, fun:(b:boolean)=>void) => {
-    onSelectTab(tab);
-    fun((prev) => !prev);
-  };
+  const getItemClassName = (tabId: string) =>
+    `${styles['nav-item']} ${activeTab === tabId ? styles['active'] : ''}`;
 
   return (
     <aside className={styles['sidebar']}>
-      
       <div className={styles['sidebar-header']}>
         <h2>Gestão de Frotas</h2>
       </div>
 
       <nav className={styles['sidebar-nav']}>
-
         <button
           type="button"
           className={getItemClassName('dashboard')}
@@ -83,7 +69,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
             className={`${styles['nav-item']} ${
               isVeiculoActive ? styles['active'] : ''
             }`}
-            onClick={()=>handleToggleClick('veiculo', setIsVeiculosOpen)}
+            onClick={() => setIsVeiculosOpen((prev) => !prev)}
             aria-expanded={isVeiculosOpen}
           >
             <span>🚛</span>
@@ -93,7 +79,6 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
             </span>
           </button>
 
-          {/* Submenu de Opções 3D */}
           {isVeiculosOpen && (
             <div className={styles['submenu']}>
               {OPCOES_VEICULO.map((opcao) => (
@@ -119,7 +104,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
             className={`${styles['nav-item']} ${
               isPneuActive ? styles['active'] : ''
             }`}
-            onClick={()=>handleToggleClick('pneu', setIsPneusOpen)}
+            onClick={() => setIsPneusOpen((prev) => !prev)}
             aria-expanded={isPneusOpen}
           >
             <span>◉</span>
@@ -158,13 +143,12 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
 
         {/* Grupo Expansível: Templates */}
         <div className={styles['nav-group']}>
-            
           <button
             type="button"
             className={`${styles['nav-item']} ${
               isTemplatesActive ? styles['active'] : ''
             }`}
-            onClick={()=>handleToggleClick('templates', setIsTemplatesOpen)}
+            onClick={() => setIsTemplatesOpen((prev) => !prev)}
             aria-expanded={isTemplatesOpen}
           >
             <span>▦</span>
@@ -208,7 +192,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
             className={`${styles['nav-item']} ${
               isManutencaoActive ? styles['active'] : ''
             }`}
-            onClick={() => handleToggleClick('manutencao', setIsManutencaoOpen)}
+            onClick={() => setIsManutencaoOpen((prev) => !prev)}
             aria-expanded={isManutencaoOpen}
           >
             <span>⚙</span>
@@ -236,7 +220,6 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
           )}
         </div>
 
-
         <button
           type="button"
           className={getItemClassName('desgaste')}
@@ -247,19 +230,18 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
         </button>
       </nav>
 
-        {isAdmin && (
-          <div className={styles['sidebar-footer']}>
-            <button
-              type="button"
-              className={getItemClassName('usuarios')}
-              onClick={() => onSelectTab('usuarios')}
-            >
-              <span>♙</span>
-              <span className={styles['nav-label']}>Usuários</span>
-            </button>
-          </div>
-        )}
-        
+      {isAdmin && (
+        <div className={styles['sidebar-footer']}>
+          <button
+            type="button"
+            className={getItemClassName('usuarios')}
+            onClick={() => onSelectTab('usuarios')}
+          >
+            <span>♙</span>
+            <span className={styles['nav-label']}>Usuários</span>
+          </button>
+        </div>
+      )}
     </aside>
   );
 }

@@ -383,11 +383,28 @@
 }
 
 /* --- Suporte a Submenu Expansível --- */
+/* --- Ajustes Globais para Botões de Navegação --- */
 
+/* Garante que os botões ocupem toda a largura da sidebar e tenham cursor interativo */
+.nav-item {
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Garante alinhamento flex no container do grupo */
 .nav-group {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    width: 100%;
+}
+
+/* Alinha o texto do rótulo à esquerda caso o botão flexione */
+.nav-label {
+    flex: 1;
+    text-align: left;
 }
 
 .chevron {
@@ -396,16 +413,19 @@
     color: var(--text);
 }
 
+/* --- Estilização do Submenu --- */
+
 .submenu {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding-left: 32px;
+    padding-left: 28px;
 }
 
 .submenu-item {
     display: flex;
     align-items: center;
+    width: 100%;
     padding: 8px 12px;
     border: 1px solid transparent;
     border-radius: 6px;
@@ -414,6 +434,7 @@
     font-size: 13px;
     text-align: left;
     cursor: pointer;
+    box-sizing: border-box;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
@@ -430,7 +451,7 @@
     font-weight: 600;
 }
 
-/* Responsividade Mobile (esconde o submenu quando a barra encolhe) */
+/* --- Ajuste Mobile (Oculta submenus em telas menores) --- */
 @media (max-width: 700px) {
     .chevron,
     .submenu,
@@ -438,4 +459,3 @@
         display: none !important;
     }
 }
-
