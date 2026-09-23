@@ -263,11 +263,9 @@ function Content({
 }) {
   return (
     <div className={styles['content']}>
-      
+      <DetailsHeader tire={tire} />
 
-      <div className={styles['details-grid']}>
-
-        <DetailsHeader tire={tire} />
+      <div className={styles['details-grid']}>  
         
         <VehicleCard vehicle={vehicleRecord} />
 
