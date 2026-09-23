@@ -14,14 +14,13 @@ const OPCOES_VEICULO = [
 ];
 
 function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
+  
   const [isVeiculosOpen, setIsVeiculosOpen] = useState(false);
 
   // O item de veículos fica destacado se ele mesmo ou alguma sub-aba estiver ativa
-  const isVeiculoActive =
-    activeTab === 'veiculo' || OPCOES_VEICULO.some((opt) => opt.id === activeTab);
+  const isVeiculoActive = activeTab === 'veiculo' || OPCOES_VEICULO.some((opt) => opt.id === activeTab);
 
-  const getItemClassName = (tabId: string) =>
-    `${styles['nav-item']} ${activeTab === tabId ? styles['active'] : ''}`;
+  const getItemClassName = (tabId: string) => `${styles['nav-item']} ${activeTab === tabId ? styles['active'] : ''}`;
 
   const handleVeiculosClick = () => {
     onSelectTab('veiculo');
@@ -36,6 +35,7 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
       </div>
 
       <nav className={styles['sidebar-nav']}>
+
         <button
           type="button"
           className={getItemClassName('dashboard')}
@@ -136,27 +136,19 @@ function Sidebar({ isAdmin, activeTab, onSelectTab }: SidebarProps) {
         </button>
       </nav>
 
-      <div className={styles['sidebar-footer']}>
+      
         {isAdmin && (
-          <button
-            type="button"
-            className={getItemClassName('usuarios')}
-            onClick={() => onSelectTab('usuarios')}
-          >
-            <span>♙</span>
-            <span className={styles['nav-label']}>Usuários</span>
-          </button>
+          <div className={styles['sidebar-footer']}>
+            <button
+              type="button"
+              className={getItemClassName('usuarios')}
+              onClick={() => onSelectTab('usuarios')}
+            >
+              <span>♙</span>
+              <span className={styles['nav-label']}>Usuários</span>
+            </button>
+          </div>
         )}
-
-        <button
-          type="button"
-          className={getItemClassName('config')}
-          onClick={() => onSelectTab('config')}
-        >
-          <span>⚙</span>
-          <span className={styles['nav-label']}>Configurações</span>
-        </button>
-      </div>
     </aside>
   );
 }

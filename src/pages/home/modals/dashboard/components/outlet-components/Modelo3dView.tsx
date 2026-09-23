@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-import "../../css/Modelo3dView.module.css";
+
+import styles from '../../css/Modelo3dView.module.css'
 
 type Tire = {
   id: string;
@@ -1076,7 +1077,8 @@ function Modelo3dView() {
   // =======================================================
 
   return (
-    <div className="app-shell">
+    <div className={styles['container']}>
+      <div className="app-shell">
 
       {/* =================================================
           CABEÇALHO
@@ -1329,6 +1331,7 @@ function Modelo3dView() {
 
       )}
 
+    </div>
     </div>
   );
 }

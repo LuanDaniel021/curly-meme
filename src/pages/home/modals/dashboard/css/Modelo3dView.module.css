@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 :root { font-family: 'DM Sans', sans-serif; color: #d4d8df; background: #0b0e12; font-synthesis: none; }
-* { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; }
-button, input { font: inherit; }
-button { cursor: pointer; }
+
+.container * { box-sizing: border-box; }
+.container { margin: 0; min-width: 320px; }
+.container button, input { font: inherit; }
+.container button { cursor: pointer; }
 
 .app-shell { min-height: 100vh; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 48%, #202a35 0, #131a22 34%, #0b0f14 76%); }
 .app-shell::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .16; background-image: linear-gradient(115deg, transparent 0 49%, rgba(255,255,255,.03) 50%, transparent 51%); background-size: 7px 7px; }

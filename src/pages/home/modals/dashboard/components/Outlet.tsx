@@ -13,6 +13,7 @@ import UsuariosView from './outlet-components/UsuariosView';
 
 import TemplatesView from './outlet-components/TemplatesView';
 import Modelo3dView from './outlet-components/Modelo3dView';
+import VerificarView from './outlet-components/VerificarView';
 
 function OutletView() {
     return (
@@ -157,6 +158,7 @@ function Outlet({ activeTab } : {activeTab:string})
   const handler = (tab: string) => {
     switch (tab) {
       case 'veiculo-3d-geral'    : return <Modelo3dView />;
+      case 'veiculo-3d-pneus': return <VerificarView />
       case 'veiculo'    : return <VeiculosView />;
       case 'pneu'       : return <PneusView />;
       case 'rodizio'    : return <RodizioView />;
