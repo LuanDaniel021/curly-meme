@@ -9,7 +9,11 @@ import { useEffect, useState } from 'react';
 
 import { api } from '../../../../service/api';
 
-function Dashboard() {
+interface DashboardPops {
+  setModalAtivo: () => void
+}
+
+function Dashboard( {setModalAtivo} : DashboardPops ) {
 
   const [activeTab, setActiveTab] = useState('home');
 
@@ -41,7 +45,7 @@ function Dashboard() {
 
       <div className={styles['dashboard-body']}>
 
-        <Header />
+        <Header setModalAtivo={setModalAtivo}/>
 
         <Outlet activeTab={activeTab} />
 
